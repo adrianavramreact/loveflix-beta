@@ -34,7 +34,7 @@ Reply briefly, in the user's language. Read before you write; do not overwrite a
 2. **Screen** `src/features/<feature>/screens/ScreenNameScreen.tsx`: presentational only. Props in, callbacks out, no store or router imports. All colors, spacing, radii and fonts from `src/shared/theme/tokens.ts`; prices only from `src/features/unlock/domain/pricing.ts`; English text. Export it from the feature's `index.ts`.
 3. **Test** `src/features/<feature>/__tests__/ScreenNameScreen.test.tsx`: render with mock props (React Native Testing Library); assert the main heading and that the primary action calls its callback.
 
-Imports between features go only through the other feature's `index.ts`, never into its internal files.
+Imports between features go only through the other feature's `index.ts`, never into its internal files. All imports from `src/` use the `@/` alias (`@/shared/theme/tokens`, `@/features/home`), never `../` paths.
 
 This skill builds UI only. If the screen needs a rule or store action that doesn't exist yet, stop and say what's missing.
 

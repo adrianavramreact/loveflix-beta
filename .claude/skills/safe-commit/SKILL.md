@@ -26,10 +26,14 @@ Warn (do not block) if you find:
 - **Hardcoded prices or coin amounts** outside `src/features/unlock/domain/pricing.ts` (for example `85`, `150`, `€6.99` in UI code).
 - **German UI text** left over from the design: `git diff --cached | grep -nE 'Jetzt|ansehen|Episoden|Folge'`. App text is English.
 - **Pressables without `accessibilityLabel`** in the staged diff.
+- **Hardcoded UI text**: JSX text (`>Watch<`) or string `accessibilityLabel="…"` in staged files under `app/` or `src/`. User-facing text belongs in `src/shared/constants/strings.ts`; series and episode data belongs in `src/shared/data/catalog.ts`.
+- **Relative imports**: `from '../…'` in staged files under `app/` or `src/`. Imports use the `@/` alias for `src/` (for example `@/shared/constants/strings`).
+- **Deprecated APIs**: any `@typescript-eslint/no-deprecated` warning from `npm run lint` (step 3), for example `ImageBackground`. Name the API and suggest its replacement.
 
 ## 3. Project checks
 - Run `npm run lint`, `npm run typecheck` and `npm test -- --watchAll=false` (only the scripts that exist in `package.json`; do not invent commands).
 - If a check fails: show the relevant output and stop.
+- Lint warnings do not stop the commit, but list them in the summary (step 5).
 
 ## 4. Commit message
 - Propose a [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) message in English: `type(scope): subject`, at most 72 characters, imperative, lowercase subject.

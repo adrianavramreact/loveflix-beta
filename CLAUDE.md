@@ -45,6 +45,8 @@ docs/design/              README with the screens we build; renders are local on
 - Business rules live only in `src/features/unlock/domain/` as pure functions, with tests.
 - Screens and components take props only; they never import the store or the router. Routes in `app/` connect the store to screens.
 - A feature imports from another feature only through its `index.ts`.
+- Import from `src/` with the `@/` alias (`@/shared/constants/strings`), never with `../` paths.
+- User-facing text lives in `src/shared/constants/strings.ts`.
 - Colors, spacing, radii and fonts come only from `src/shared/theme/tokens.ts`. Prices come only from `src/features/unlock/domain/pricing.ts`.
 - Every pressable has `accessibilityRole`, `accessibilityLabel` and a touch target of at least 44×44 pt.
 - App text is English.
