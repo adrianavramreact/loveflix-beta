@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, fonts, fontSizes, spacing } from '../theme/tokens';
+import { colors, fonts, fontSizes, spacing } from '@/shared/theme/tokens';
+import { strings } from '@/shared/constants/strings';
 
 type Props = {
   title: string;
@@ -10,7 +11,7 @@ export function ComingSoon({ title }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.text}>Not part of this prototype.</Text>
+      <Text style={styles.text}>{strings.common.notInPrototype}</Text>
     </View>
   );
 }

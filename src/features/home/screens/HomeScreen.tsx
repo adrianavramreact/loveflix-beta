@@ -1,10 +1,8 @@
-import type React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import {
   FlatList,
   Image,
-  ImageBackground,
   type ImageSourcePropType,
   Pressable,
   StyleSheet,
@@ -13,16 +11,25 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import type { Series } from '../../../shared/data/catalog';
+import type { Series } from '@/shared/data/catalog';
 import {
   colors,
   fonts,
   fontSizes,
+  iconSize,
   minTouchTarget,
   radius,
   spacing,
-} from '../../../shared/theme/tokens';
-import { PosterCard } from '../components/PosterCard';
+} from '@/shared/theme/tokens';
+import { PosterCard } from '@/features/home/components/PosterCard';
+import { strings } from '@/shared/constants/strings';
+
+const HERO_HEIGHT = 460;
+const HEADER_ITEM_SIZE = 32; // logo and avatar
+const NOTIFICATION_DOT_SIZE = 8;
+const NOTIFICATION_DOT_OFFSET = 10;
+const CHIP_HEIGHT = 36; // hitSlop keeps the touch target at 44 pt
+const SECTION_MARK_SIZE = 26;
 
 export type HomeRow = {
   title: string;
@@ -44,40 +51,41 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
 
   const header = (
     <View>
-      <ImageBackground source={featured.poster} style={styles.hero} resizeMode="cover">
+      <View style={styles.hero}>
+        <Image source={featured.poster} style={styles.heroImage} resizeMode="cover" />
         <View style={styles.heroShade} />
         <View style={styles.heroContent}>
           <View style={styles.tagRow}>
-            <Text style={styles.spotlight}>Spotlight</Text>
-            <Text style={styles.genres}>{featured.genres.join(' • ')}</Text>
+            <Text style={styles.spotlight}>{strings.home.spotlight}</Text>
+            <Text style={styles.genres}>{featured.genres.join(strings.common.separator)}</Text>
           </View>
           <Text style={styles.heroTitle} accessibilityRole="header">
             {featured.title}
           </Text>
           <Text style={styles.tagline}>{featured.tagline}</Text>
           <Text style={styles.stats}>
-            ★ {featured.rating} • {featured.episodeCount} Episodes
+            {strings.home.stats(featured.rating, featured.episodeCount)}
           </Text>
           <View style={styles.heroActions}>
             <Pressable
               style={styles.playButton}
               onPress={() => onPlay(featured.id)}
               accessibilityRole="button"
-              accessibilityLabel={`Watch ${featured.title}`}
+              accessibilityLabel={strings.home.watchSeries(featured.title)}
             >
-              <Ionicons name="play" size={18} color={colors.onPrimary} />
-              <Text style={styles.playText}>Watch Now</Text>
+              <Ionicons name="play" size={iconSize.sm} color={colors.onPrimary} />
+              <Text style={styles.playText}>{strings.home.watchNow}</Text>
             </Pressable>
             <Pressable
               style={styles.roundButton}
               accessibilityRole="button"
-              accessibilityLabel="Add to my list"
+              accessibilityLabel={strings.home.addToList}
             >
-              <Ionicons name="add" size={22} color={colors.text} />
+              <Ionicons name="add" size={iconSize.md} color={colors.text} />
             </Pressable>
           </View>
         </View>
-      </ImageBackground>
+      </View>
 
       <FlatList
         horizontal
@@ -91,7 +99,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
             hitSlop={spacing.xs}
             style={[styles.chip, item === genre && styles.chipActive]}
             accessibilityRole="button"
-            accessibilityLabel={`Show ${item}`}
+            accessibilityLabel={strings.home.showGenre(item)}
           >
             <Text style={[styles.chipText, item === genre && styles.chipTextActive]}>{item}</Text>
           </Pressable>
@@ -104,25 +112,29 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
     <SafeAreaView style={styles.screen} edges={['top']}>
       <View style={styles.topBar}>
         <View style={styles.logo}>
-          <Ionicons name="heart-outline" size={20} color={colors.onPrimary} />
+          <Ionicons name="heart-outline" size={iconSize.md} color={colors.onPrimary} />
         </View>
         <View style={styles.topBarActions}>
           <Pressable
             style={styles.iconButton}
             accessibilityRole="button"
-            accessibilityLabel="Search"
+            accessibilityLabel={strings.home.search}
           >
-            <Ionicons name="search" size={22} color={colors.text} />
+            <Ionicons name="search" size={iconSize.md} color={colors.text} />
           </Pressable>
           <Pressable
             style={styles.iconButton}
             accessibilityRole="button"
-            accessibilityLabel="Notifications"
+            accessibilityLabel={strings.home.notifications}
           >
-            <Ionicons name="notifications-outline" size={22} color={colors.text} />
+            <Ionicons name="notifications-outline" size={iconSize.md} color={colors.text} />
             <View style={styles.notificationDot} />
           </Pressable>
-          <Image source={avatar} style={styles.avatar} accessibilityLabel="Your profile" />
+          <Image
+            source={avatar}
+            style={styles.avatar}
+            accessibilityLabel={strings.home.yourProfile}
+          />
         </View>
       </View>
 
@@ -152,7 +164,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
             )}
             <View style={styles.rowHeader}>
               <Text style={styles.rowTitle}>{row.title}</Text>
-              <Text style={styles.seeAll}>See all</Text>
+              <Text style={styles.seeAll}>{strings.home.seeAll}</Text>
             </View>
             <FlatList
               horizontal
@@ -183,8 +195,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.lg,
   },
   logo: {
-    width: 32,
-    height: 32,
+    width: HEADER_ITEM_SIZE,
+    height: HEADER_ITEM_SIZE,
     borderRadius: radius.sm,
     alignItems: 'center',
     justifyContent: 'center',
@@ -202,22 +214,28 @@ const styles = StyleSheet.create({
   },
   notificationDot: {
     position: 'absolute',
-    top: 10,
-    right: 10,
-    width: 8,
-    height: 8,
+    top: NOTIFICATION_DOT_OFFSET,
+    right: NOTIFICATION_DOT_OFFSET,
+    width: NOTIFICATION_DOT_SIZE,
+    height: NOTIFICATION_DOT_SIZE,
     borderRadius: radius.pill,
     backgroundColor: colors.primary,
   },
   avatar: {
-    width: 32,
-    height: 32,
+    width: HEADER_ITEM_SIZE,
+    height: HEADER_ITEM_SIZE,
     marginLeft: spacing.sm,
     borderRadius: radius.pill,
   },
   hero: {
-    height: 460,
+    height: HERO_HEIGHT,
     justifyContent: 'flex-end',
+    overflow: 'hidden',
+  },
+  heroImage: {
+    ...StyleSheet.absoluteFill,
+    width: '100%',
+    height: '100%',
   },
   heroShade: {
     ...StyleSheet.absoluteFill,
@@ -237,7 +255,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bodySemiBold,
     fontSize: fontSizes.caption,
     paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
+    paddingVertical: spacing.xxs,
     borderRadius: radius.pill,
     backgroundColor: colors.accentSoft,
   },
@@ -298,7 +316,7 @@ const styles = StyleSheet.create({
   },
   chip: {
     justifyContent: 'center',
-    minHeight: 36,
+    minHeight: CHIP_HEIGHT,
     paddingHorizontal: spacing.lg,
     borderRadius: radius.pill,
     borderWidth: 1,
@@ -331,8 +349,8 @@ const styles = StyleSheet.create({
     marginTop: spacing.xl,
   },
   sectionMark: {
-    width: 26,
-    height: 26,
+    width: SECTION_MARK_SIZE,
+    height: SECTION_MARK_SIZE,
   },
   sectionTitleBlue: {
     color: colors.primary,

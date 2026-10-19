@@ -6,11 +6,9 @@ export const colors = {
   background: '#000000',
   feedBackground: '#061532',
   surface: '#18172B',
-  surfaceRaised: '#1E1D35',
   border: '#322F56',
 
   primary: '#64EDF7',
-  primaryDark: '#044449',
   onPrimary: '#04252A',
   accent: '#CB64F7',
   accentSoft: 'rgba(203, 100, 247, 0.2)',
@@ -18,17 +16,16 @@ export const colors = {
 
   text: '#FFFFFF',
   textMuted: '#C0BEDA',
-  textSubtle: '#9CA3AF',
 
   overlay: 'rgba(0, 0, 0, 0.55)',
 } as const;
 
 export const gradients = {
   brand: ['#64EDF7', '#CB64F7'],
-  paywall: ['#18172B', '#340449'],
 } as const;
 
 export const spacing = {
+  xxs: 2,
   xs: 4,
   sm: 8,
   md: 12,
@@ -39,8 +36,6 @@ export const spacing = {
 
 export const radius = {
   sm: 10,
-  md: 12,
-  lg: 14,
   xl: 24,
   pill: 999,
 } as const;
@@ -60,6 +55,12 @@ export const fontSizes = {
   subhead: 24,
   headline: 28,
   hero: 34,
+} as const;
+
+export const iconSize = {
+  xs: 12,
+  sm: 18,
+  md: 22,
 } as const;
 
 // Smallest touch target for anything pressable (Apple HIG: 44×44 pt).

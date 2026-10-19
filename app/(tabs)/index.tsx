@@ -1,4 +1,4 @@
-import { HomeScreen, type HomeRow } from '../../src/features/home';
+import { HomeScreen, type HomeRow } from '@/features/home';
 import {
   AVATAR,
   FEATURED_SERIES_ID,
@@ -6,9 +6,17 @@ import {
   HOME_SECTIONS,
   type Series,
   getSeries,
-} from '../../src/shared/data/catalog';
+} from '@/shared/data/catalog';
 
-const featured = getSeries(FEATURED_SERIES_ID)!;
+function getFeaturedSeries(): Series {
+  const series = getSeries(FEATURED_SERIES_ID);
+  if (!series) {
+    throw new Error(`Featured series "${FEATURED_SERIES_ID}" is missing from the catalog`);
+  }
+  return series;
+}
+
+const featured = getFeaturedSeries();
 
 const rows: HomeRow[] = HOME_SECTIONS.flatMap((section) =>
   section.rows.map((row, i) => ({

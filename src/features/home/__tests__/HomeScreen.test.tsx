@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 
-import { AVATAR, GENRES, SERIES } from '../../../shared/data/catalog';
-import { HomeScreen } from '../screens/HomeScreen';
+import { AVATAR, GENRES, SERIES } from '@/shared/data/catalog';
+import { HomeScreen } from '@/features/home/screens/HomeScreen';
 
 const featured = SERIES[0];
 

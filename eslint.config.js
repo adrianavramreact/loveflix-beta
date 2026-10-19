@@ -7,6 +7,16 @@ module.exports = defineConfig([
   expoConfig,
   prettierConfig,
   {
+    // Warn when code uses an API marked @deprecated (needs type information).
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parserOptions: { projectService: true, tsconfigRootDir: __dirname },
+    },
+    rules: {
+      '@typescript-eslint/no-deprecated': 'warn',
+    },
+  },
+  {
     ignores: ['dist/*', 'scripts/*', 'docs/*'],
   },
 ]);

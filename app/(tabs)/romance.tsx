@@ -1,5 +1,6 @@
-import { ComingSoon } from '../../src/shared/components/ComingSoon';
+import { ComingSoon } from '@/shared/components/ComingSoon';
+import { strings } from '@/shared/constants/strings';
 
 export default function RomanceRoute() {
-  return <ComingSoon title="Romance" />;
+  return <ComingSoon title={strings.tabs.romance} />;
 }

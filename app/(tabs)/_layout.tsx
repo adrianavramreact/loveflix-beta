@@ -2,16 +2,17 @@ import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import type { ComponentProps } from 'react';
 
-import { colors, fonts } from '../../src/shared/theme/tokens';
+import { colors, fonts } from '@/shared/theme/tokens';
+import { strings } from '@/shared/constants/strings';
 
 type IconName = ComponentProps<typeof Ionicons>['name'];
 
 const TABS: { name: string; title: string; icon: IconName }[] = [
-  { name: 'index', title: 'Home', icon: 'home-outline' },
-  { name: 'discover', title: 'Discover', icon: 'compass-outline' },
-  { name: 'romance', title: 'Romance', icon: 'heart-outline' },
-  { name: 'library', title: 'Library', icon: 'bookmark-outline' },
-  { name: 'profile', title: 'Profile', icon: 'person-outline' },
+  { name: 'index', title: strings.tabs.home, icon: 'home-outline' },
+  { name: 'discover', title: strings.tabs.discover, icon: 'compass-outline' },
+  { name: 'romance', title: strings.tabs.romance, icon: 'heart-outline' },
+  { name: 'library', title: strings.tabs.library, icon: 'bookmark-outline' },
+  { name: 'profile', title: strings.tabs.profile, icon: 'person-outline' },
 ];
 
 export default function TabsLayout() {
