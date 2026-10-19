@@ -14,8 +14,13 @@
     "test": "jest --passWithNoTests"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.4.2",
+    "@expo-google-fonts/playfair-display": "^0.4.2",
+    "@expo/vector-icons": "^15.0.2",
     "expo": "~58.0.16",
     "expo-constants": "~58.0.12",
+    "expo-font": "~58.0.9",
+    "expo-linear-gradient": "~58.0.3",
     "expo-linking": "~58.0.13",
     "expo-router": "~58.0.24",
     "expo-status-bar": "~58.0.3",
@@ -38,6 +43,9 @@
     "typescript": "~6.0.3"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "setupFiles": [
+      "./jest.setup.js"
+    ]
   }
 }
