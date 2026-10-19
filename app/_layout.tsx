@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 
-import { colors } from '../src/shared/theme/tokens';
+import { colors } from '@/shared/theme/tokens';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({

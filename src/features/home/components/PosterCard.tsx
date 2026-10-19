@@ -2,8 +2,21 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
-import type { Series } from '../../../shared/data/catalog';
-import { colors, fonts, fontSizes, gradients, radius, spacing } from '../../../shared/theme/tokens';
+import type { Series } from '@/shared/data/catalog';
+import {
+  colors,
+  fonts,
+  fontSizes,
+  gradients,
+  iconSize,
+  radius,
+  spacing,
+} from '@/shared/theme/tokens';
+import { strings } from '@/shared/constants/strings';
+
+// Poster size from the design: 130×185 pt, a 0.7 aspect ratio.
+const POSTER_WIDTH = 130;
+const POSTER_HEIGHT = 185;
 
 type Props = {
   series: Series;
@@ -15,7 +28,7 @@ export function PosterCard({ series, onPress }: Props) {
     <Pressable
       onPress={onPress}
       accessibilityRole="button"
-      accessibilityLabel={`Open ${series.title}`}
+      accessibilityLabel={strings.home.openSeries(series.title)}
       style={styles.card}
     >
       <View>
@@ -27,13 +40,19 @@ export function PosterCard({ series, onPress }: Props) {
             end={{ x: 1, y: 0 }}
             style={styles.proBadge}
           >
-            <MaterialCommunityIcons name="crown-outline" size={12} color={colors.onPrimary} />
-            <Text style={styles.proText}>PRO</Text>
+            <MaterialCommunityIcons
+              name="crown-outline"
+              size={iconSize.xs}
+              color={colors.onPrimary}
+            />
+            <Text style={styles.proText}>{strings.home.pro}</Text>
           </LinearGradient>
         )}
         <View style={styles.meta}>
-          <Text style={styles.metaText}>{series.episodeCount} Eps</Text>
-          <Text style={styles.metaText}>{series.minutesPerEpisode}m/ep</Text>
+          <Text style={styles.metaText}>{strings.home.episodeCount(series.episodeCount)}</Text>
+          <Text style={styles.metaText}>
+            {strings.home.minutesPerEpisode(series.minutesPerEpisode)}
+          </Text>
         </View>
       </View>
       <Text style={styles.title} numberOfLines={2}>
@@ -45,11 +64,11 @@ export function PosterCard({ series, onPress }: Props) {
 
 const styles = StyleSheet.create({
   card: {
-    width: 130,
+    width: POSTER_WIDTH,
   },
   poster: {
-    width: 130,
-    height: 185,
+    width: POSTER_WIDTH,
+    height: POSTER_HEIGHT,
     borderRadius: radius.sm,
   },
   proBadge: {
@@ -58,9 +77,9 @@ const styles = StyleSheet.create({
     left: spacing.sm,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 2,
+    gap: spacing.xxs,
     paddingHorizontal: spacing.sm,
-    paddingVertical: 2,
+    paddingVertical: spacing.xxs,
     borderRadius: radius.pill,
   },
   proText: {

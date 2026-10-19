@@ -33,7 +33,7 @@ export type HomeSection = {
 };
 
 // Episodes 1–4 are free; the cliffhanger lock starts at episode 5.
-export const FREE_EPISODES = 4;
+const FREE_EPISODES = 4;
 
 const EPISODE_TITLES = [
   'The Accidental Message',
@@ -228,12 +228,4 @@ export const AVATAR = require('../../../assets/posters/avatar.jpg');
 
 export function getSeries(id: string): Series | undefined {
   return SERIES.find((s) => s.id === id);
-}
-
-export function getEpisode(id: string): Episode | undefined {
-  for (const s of SERIES) {
-    const episode = s.episodes.find((e) => e.id === id);
-    if (episode) return episode;
-  }
-  return undefined;
 }
