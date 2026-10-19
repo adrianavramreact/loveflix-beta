@@ -1,6 +1,6 @@
 ---
 name: safe-commit
-description: Safe commit for the DramaFlash prototype. Checks staged files (secrets, build output, oversized assets, leftover debug code, hardcoded colors or prices, German UI text), runs lint, typecheck and tests, proposes a Conventional Commits message and commits only after the user confirms. Never pushes. Use when the user asks for "commit", "safe-commit" or "/safe-commit".
+description: Safe commit for the LoveFlix prototype. Checks staged files (secrets, build output, oversized assets, leftover debug code, hardcoded colors or prices, German UI text), runs lint, typecheck and tests, proposes a Conventional Commits message and commits only after the user confirms. Never pushes. Use when the user asks for "commit", "safe-commit" or "/safe-commit".
 ---
 
 # safe-commit

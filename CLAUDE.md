@@ -1,6 +1,6 @@
-# DramaFlash beta prototype
+# LoveFlix beta prototype
 
-Clickable React Native prototype of the DramaFlash beta app (micro-drama series), built with Expo as a take-home task for TargetVideo. Mobile only: iOS and Android.
+Clickable React Native prototype of the LoveFlix beta app (micro-drama series), built with Expo as a take-home task for TargetVideo. Mobile only: iOS and Android.
 
 The prototype builds one loop, done well: Home → tap Play or a poster → vertical episode feed → episode 5 is locked → "Continue the romance" (unlock episode or season with coins) → not enough coins → coin packs → simulated purchase → back to the episode, which plays. Quality over completeness.
 

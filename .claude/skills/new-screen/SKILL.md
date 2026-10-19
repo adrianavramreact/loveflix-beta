@@ -1,6 +1,6 @@
 ---
 name: new-screen
-description: Scaffold a new screen in the DramaFlash prototype the project's way. An expo-router route file in app/ that wires the store, a presentational screen in src/features/<feature>/screens/ built from shared theme tokens and existing components, accessibility labels, and a render test. Runs the checks and hands off to safe-commit. Use when the user asks for a new screen or "/new-screen".
+description: Scaffold a new screen in the LoveFlix prototype the project's way. An expo-router route file in app/ that wires the store, a presentational screen in src/features/<feature>/screens/ built from shared theme tokens and existing components, accessibility labels, and a render test. Runs the checks and hands off to safe-commit. Use when the user asks for a new screen or "/new-screen".
 argument-hint: <ScreenName> <route, e.g. (tabs)/index or feed/[seriesId]> [design screen, e.g. home or coin-packs]
 ---
 

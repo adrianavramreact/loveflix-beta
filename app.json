@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "DramaFlash",
-    "slug": "dramaflash-beta",
-    "scheme": "dramaflash",
+    "name": "LoveFlix",
+    "slug": "loveflix-beta",
+    "scheme": "loveflix",
     "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
