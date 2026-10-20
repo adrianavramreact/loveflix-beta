@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { FlatList, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 
 import { EpisodeCard } from '@/features/feed/components/EpisodeCard';
 import { strings } from '@/shared/constants/strings';
@@ -35,9 +35,7 @@ export function EpisodeFeedScreen({
   onActiveIndexChange,
 }: Props) {
   // Each card is exactly as tall as the list, so paging snaps card by card.
-  // It starts at the window height and onLayout corrects it, because on Android the list gets less space.
-  const { height: windowHeight } = useWindowDimensions();
-  const [height, setHeight] = useState(windowHeight);
+  const [height, setHeight] = useState(0);
   const listRef = useRef<FlatList<FeedItem>>(null);
   const [activeIndex, setActiveIndex] = useState(initialIndex);
 
@@ -71,32 +69,34 @@ export function EpisodeFeedScreen({
 
   return (
     <View style={styles.screen} onLayout={(e) => setHeight(e.nativeEvent.layout.height)}>
-      <FlatList
-        ref={listRef}
-        data={items}
-        keyExtractor={(item) => item.episode.id}
-        pagingEnabled
-        initialNumToRender={INITIAL_CARDS_TO_RENDER}
-        windowSize={WINDOW_SIZE}
-        showsVerticalScrollIndicator={false}
-        initialScrollIndex={initialIndex}
-        getItemLayout={(_, index) => ({ length: height, offset: height * index, index })}
-        onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={viewabilityConfig}
-        renderItem={({ item, index }) => (
-          <EpisodeCard
-            index={index}
-            episode={item.episode}
-            seriesTitle={seriesTitle}
-            locked={item.locked}
-            active={index === activeIndex}
-            nearActive={Math.abs(index - activeIndex) <= 1}
-            height={height}
-            onUnlock={onUnlock}
-            onEnded={goToNext}
-          />
-        )}
-      />
+      {height > 0 && (
+        <FlatList
+          ref={listRef}
+          data={items}
+          keyExtractor={(item) => item.episode.id}
+          pagingEnabled
+          initialNumToRender={INITIAL_CARDS_TO_RENDER}
+          windowSize={WINDOW_SIZE}
+          showsVerticalScrollIndicator={false}
+          initialScrollIndex={initialIndex}
+          getItemLayout={(_, index) => ({ length: height, offset: height * index, index })}
+          onViewableItemsChanged={onViewableItemsChanged}
+          viewabilityConfig={viewabilityConfig}
+          renderItem={({ item, index }) => (
+            <EpisodeCard
+              index={index}
+              episode={item.episode}
+              seriesTitle={seriesTitle}
+              locked={item.locked}
+              active={index === activeIndex}
+              nearActive={Math.abs(index - activeIndex) <= 1}
+              height={height}
+              onUnlock={onUnlock}
+              onEnded={goToNext}
+            />
+          )}
+        />
+      )}
     </View>
   );
 }
