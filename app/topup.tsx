@@ -47,7 +47,11 @@ export default function TopupRoute() {
     if (buying.current) return;
     buying.current = true;
     addCoins(packTotal(selectedPack));
-    const episodeIds = episodesToUnlock(unlockOption, episode, series, unlockedEpisodeIds);
+    const episodeIds = episodesToUnlock(
+      unlockOption === 'episode'
+        ? { option: unlockOption, episode }
+        : { option: unlockOption, series, unlockedEpisodeIds },
+    );
     if (unlock(episodeIds, price)) {
       router.back();
       return;

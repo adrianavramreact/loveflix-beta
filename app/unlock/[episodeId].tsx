@@ -31,7 +31,9 @@ export default function UnlockRoute() {
   const unlockSelected = () => {
     if (unlocking.current) return;
     unlocking.current = true;
-    const episodeIds = episodesToUnlock(option, episode, series, unlockedEpisodeIds);
+    const episodeIds = episodesToUnlock(
+      option === 'episode' ? { option, episode } : { option, series, unlockedEpisodeIds },
+    );
     if (unlock(episodeIds, priceOf(option, locked.length))) {
       router.back();
       return;

@@ -13,7 +13,7 @@ import { getSeries } from '@/shared/data/catalog';
 
 const series = getSeries('billionaires-secret')!;
 const freeEpisode = series.episodes.find((episode) => episode.isFree)!;
-const [firstLocked, secondLocked] = series.episodes.filter((episode) => !episode.isFree);
+const [firstLocked] = series.episodes.filter((episode) => !episode.isFree);
 
 describe('isLocked', () => {
   it('never locks a free episode', () => {
@@ -28,19 +28,19 @@ describe('isLocked', () => {
 
 describe('episodesToUnlock', () => {
   it('unlocks only the chosen episode', () => {
-    expect(episodesToUnlock('episode', firstLocked, series, [])).toEqual([firstLocked.id]);
+    expect(episodesToUnlock({ option: 'episode', episode: firstLocked })).toEqual([firstLocked.id]);
   });
 
   it('unlocks every locked episode of the season', () => {
-    expect(episodesToUnlock('season', firstLocked, series, [])).toEqual(
+    expect(episodesToUnlock({ option: 'season', series, unlockedEpisodeIds: [] })).toEqual(
       lockedEpisodes(series, []).map((episode) => episode.id),
     );
   });
 
   it('skips episodes already unlocked when buying the season', () => {
-    expect(episodesToUnlock('season', secondLocked, series, [firstLocked.id])).not.toContain(
-      firstLocked.id,
-    );
+    expect(
+      episodesToUnlock({ option: 'season', series, unlockedEpisodeIds: [firstLocked.id] }),
+    ).not.toContain(firstLocked.id);
   });
 });
 

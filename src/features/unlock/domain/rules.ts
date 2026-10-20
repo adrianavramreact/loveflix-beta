@@ -20,14 +20,13 @@ export function priceOf(option: UnlockOption, lockedCount: number): number {
   return Math.min(SEASON_PRICE, lockedCount * EPISODE_PRICE);
 }
 
-export function episodesToUnlock(
-  option: UnlockOption,
-  episode: Episode,
-  series: Series,
-  unlockedEpisodeIds: string[],
-): string[] {
-  if (option === 'episode') return [episode.id];
-  return lockedEpisodes(series, unlockedEpisodeIds).map((locked) => locked.id);
+export type UnlockRequest =
+  | { option: 'episode'; episode: Episode }
+  | { option: 'season'; series: Series; unlockedEpisodeIds: string[] };
+
+export function episodesToUnlock(request: UnlockRequest): string[] {
+  if (request.option === 'episode') return [request.episode.id];
+  return lockedEpisodes(request.series, request.unlockedEpisodeIds).map((locked) => locked.id);
 }
 
 export function canAfford(balance: number, price: number): boolean {
