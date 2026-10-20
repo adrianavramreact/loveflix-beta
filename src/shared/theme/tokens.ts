@@ -1,11 +1,14 @@
 export const colors = {
   background: '#000000',
+  backdrop: '#171513',
   feedBackground: '#061532',
   surface: '#18172B',
+  surfaceRaised: '#1B1930',
   border: '#322F56',
 
   primary: '#64EDF7',
   onPrimary: '#04252A',
+  optionSelected: '#232E44',
   accent: '#CB64F7',
   accentSoft: 'rgba(203, 100, 247, 0.2)',
   coin: '#FACC15',

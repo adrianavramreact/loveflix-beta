@@ -45,4 +45,19 @@ export const strings = {
     shareMessage: (seriesTitle: string, index: number) =>
       `Watch ${seriesTitle}, episode ${index}, on LoveFlix`,
   },
+  unlock: {
+    locked: 'Locked',
+    episodeLabel: (index: number) => `Episode ${index}`,
+    title: 'Continue the romance',
+    subtitle: 'Unlock all episodes and discover what happens next in their journey.',
+    episodeOption: 'Unlock Episode',
+    episodeOptionDetail: 'One-time access',
+    seasonOption: 'Unlock Full Season',
+    seasonOptionDetail: (from: number, to: number) =>
+      from === to ? `Episode ${from}` : `Episodes ${from} - ${to}`,
+    bestValue: 'Best Value',
+    coins: (amount: number) => `${amount} Coins`,
+    unlockNow: 'Unlock Now',
+    maybeLater: 'Maybe Later',
+  },
 };

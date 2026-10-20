@@ -17,4 +17,5 @@ export {
   priceOf,
 } from './domain/rules';
 export type { UnlockOption } from './domain/rules';
+export { ContinueTheRomanceScreen } from './screens/ContinueTheRomanceScreen';
 export { useWallet } from './store/wallet';

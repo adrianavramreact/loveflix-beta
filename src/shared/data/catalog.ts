@@ -237,3 +237,7 @@ export const AVATAR = require('../../../assets/posters/avatar.jpg');
 export function getSeries(id: string): Series | undefined {
   return SERIES.find((s) => s.id === id);
 }
+
+export function getEpisode(id: string): Episode | undefined {
+  return SERIES.flatMap((series) => series.episodes).find((episode) => episode.id === id);
+}

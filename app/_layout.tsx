@@ -41,7 +41,9 @@ export default function RootLayout() {
       <StatusBar style="light" />
       <Stack
         screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}
-      />
+      >
+        <Stack.Screen name="unlock/[episodeId]" options={{ presentation: 'fullScreenModal' }} />
+      </Stack>
     </>
   );
 }
