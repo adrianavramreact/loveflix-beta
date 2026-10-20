@@ -1,9 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 import { STARTING_COINS } from '@/features/unlock/domain/pricing';
 import { canAfford } from '@/features/unlock/domain/rules';
+import { safeStorage } from '@/shared/storage/safeStorage';
 
 type WalletState = {
   coins: number;
@@ -30,7 +30,7 @@ export const useWallet = create<WalletState>()(
     }),
     {
       name: 'loveflix-wallet',
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => safeStorage),
     },
   ),
 );

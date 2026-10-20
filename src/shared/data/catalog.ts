@@ -52,6 +52,7 @@ const CLIPS = [
   require('../../../assets/videos/ep-3.mp4'),
   require('../../../assets/videos/ep-4.mp4'),
   require('../../../assets/videos/ep-5.mp4'),
+  require('../../../assets/videos/ep-6.mp4'),
 ];
 
 const CLIP_DURATION_SEC = 10;

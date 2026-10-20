@@ -1,6 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
+
+import { safeStorage } from '@/shared/storage/safeStorage';
 
 type WatchProgressState = {
   lastIndexBySeries: Record<string, number>;
@@ -16,7 +17,7 @@ export const useWatchProgress = create<WatchProgressState>()(
     }),
     {
       name: 'loveflix-watch-progress',
-      storage: createJSONStorage(() => AsyncStorage),
+      storage: createJSONStorage(() => safeStorage),
     },
   ),
 );
