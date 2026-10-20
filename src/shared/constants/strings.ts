@@ -45,4 +45,36 @@ export const strings = {
     shareMessage: (seriesTitle: string, index: number) =>
       `Watch ${seriesTitle}, episode ${index}, on LoveFlix`,
   },
+  unlock: {
+    locked: 'Locked',
+    episodeLabel: (index: number) => `Episode ${index}`,
+    title: 'Continue the romance',
+    subtitle: 'Unlock all episodes and discover what happens next in their journey.',
+    episodeOption: 'Unlock Episode',
+    episodeOptionDetail: 'One-time access',
+    seasonOption: 'Unlock Full Season',
+    seasonOptionDetail: (from: number, to: number) =>
+      from === to ? `Episode ${from}` : `Episodes ${from} - ${to}`,
+    bestValue: 'Best Value',
+    coins: (amount: number) => `${amount} Coins`,
+    unlockNow: 'Unlock Now',
+    maybeLater: 'Maybe Later',
+  },
+  topup: {
+    title: 'Unlock Episode',
+    seasonTitle: 'Unlock Season',
+    back: 'Back',
+    episodeStatus: (from: number, to: number) =>
+      `${from === to ? `Episode ${from}` : `Episodes ${from} - ${to}`}${SEPARATOR}Locked`,
+    unlockFor: (price: number) => `Unlock for ${price} Coins`,
+    yourBalance: 'Your Balance',
+    rechargeCoins: 'Recharge Coins',
+    bonus: (amount: number) => `+ ${amount} Bonus`,
+    popular: 'Popular',
+    packLabel: (coins: number, price: string) => `${coins} coins for ${price}`,
+    buyCoins: (coins: number) => `Buy ${coins} Coins`,
+    forPrice: (price: string) => `for ${price}`,
+    secure: 'Secure',
+    simulated: 'Purchases are simulated in this prototype. No payment is made.',
+  },
 };

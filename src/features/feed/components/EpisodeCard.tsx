@@ -266,12 +266,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   coinBack: {
-    right: -spacing.xs,
-    bottom: -spacing.xs,
+    right: 0,
+    bottom: spacing.xxs,
   },
   coinFront: {
-    right: -spacing.md,
-    bottom: -spacing.md,
+    right: -spacing.sm,
+    bottom: -spacing.xs,
   },
   coinMark: {
     color: colors.coin,

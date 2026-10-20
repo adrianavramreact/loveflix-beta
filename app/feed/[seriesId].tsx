@@ -1,22 +1,30 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 
-import { EpisodeFeedScreen, getLastEpisode, setLastEpisode, type FeedItem } from '@/features/feed';
+import { EpisodeFeedScreen, useWatchProgress, type FeedItem } from '@/features/feed';
+import { isLocked, useWallet } from '@/features/unlock';
 import { getSeries } from '@/shared/data/catalog';
 
-function openUnlock(_episodeId: string) {}
+function openUnlock(episodeId: string) {
+  router.push({ pathname: '/unlock/[episodeId]', params: { episodeId } });
+}
 
 export default function EpisodeFeedRoute() {
   const { seriesId } = useLocalSearchParams<{ seriesId: string }>();
   const series = getSeries(seriesId);
 
+  const unlockedEpisodeIds = useWallet((state) => state.unlockedEpisodeIds);
   const items: FeedItem[] = (series?.episodes ?? []).map((episode) => ({
     episode,
-    locked: !episode.isFree,
+    locked: isLocked(episode, unlockedEpisodeIds),
   }));
 
-  const rememberEpisode = (index: number) => setLastEpisode(seriesId, index + 1);
+  const setLastIndex = useWatchProgress((state) => state.setLastIndex);
+  const [initialIndex] = useState(
+    () => useWatchProgress.getState().lastIndexBySeries[seriesId] ?? 0,
+  );
 
-  const initialIndex = getLastEpisode(seriesId) - 1;
+  const rememberEpisode = (index: number) => setLastIndex(seriesId, index);
 
   return (
     <EpisodeFeedScreen

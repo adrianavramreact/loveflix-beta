@@ -22,6 +22,7 @@ import {
   spacing,
 } from '@/shared/theme/tokens';
 import { PosterCard } from '@/features/home/components/PosterCard';
+import { GradientText } from '@/shared/components/GradientText';
 import { strings } from '@/shared/constants/strings';
 
 const HERO_HEIGHT = 460;
@@ -153,9 +154,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
                   <View style={[styles.sectionMark, styles.sectionMarkPlain]} />
                 )}
                 {index === 0 ? (
-                  <Text style={[styles.sectionTitle, styles.sectionTitleBlue]}>
-                    {row.sectionTitle}
-                  </Text>
+                  <GradientText style={styles.sectionTitle}>{row.sectionTitle}</GradientText>
                 ) : (
                   <Text style={styles.sectionTitle}>{row.sectionTitle}</Text>
                 )}
@@ -350,9 +349,6 @@ const styles = StyleSheet.create({
   sectionMark: {
     width: SECTION_MARK_SIZE,
     height: SECTION_MARK_SIZE,
-  },
-  sectionTitleBlue: {
-    color: colors.primary,
   },
   sectionMarkBlue: {
     backgroundColor: colors.primary,
