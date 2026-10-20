@@ -1,10 +1,4 @@
-export {
-  COIN_PACKS,
-  DEFAULT_PACK_ID,
-  EPISODE_PRICE,
-  SEASON_PRICE,
-  STARTING_COINS,
-} from './domain/pricing';
+export { COIN_PACKS, DEFAULT_PACK_ID, EPISODE_PRICE, SEASON_PRICE } from './domain/pricing';
 export type { CoinPack } from './domain/pricing';
 export {
   canAfford,

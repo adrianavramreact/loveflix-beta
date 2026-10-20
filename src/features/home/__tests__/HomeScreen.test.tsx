@@ -2,7 +2,6 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 
 import { AVATAR, GENRES, SERIES } from '@/shared/data/catalog';
 import { HomeScreen } from '@/features/home/screens/HomeScreen';
-import { STARTING_COINS } from '@/features/unlock';
 
 const featured = SERIES[0];
 
@@ -13,7 +12,6 @@ async function renderHome(onPlay = jest.fn()) {
       rows={[{ title: 'Trending Romance', sectionTitle: 'Romance', series: SERIES.slice(1, 4) }]}
       genres={GENRES}
       avatar={AVATAR}
-      coins={STARTING_COINS}
       onPlay={onPlay}
       onOpenSeries={jest.fn()}
     />,

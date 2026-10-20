@@ -43,12 +43,11 @@ type Props = {
   rows: HomeRow[];
   genres: string[];
   avatar: ImageSourcePropType;
-  coins: number;
   onPlay: (seriesId: string) => void;
   onOpenSeries: (seriesId: string) => void;
 };
 
-export function HomeScreen({ featured, rows, genres, avatar, coins, onPlay, onOpenSeries }: Props) {
+export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSeries }: Props) {
   const [genre, setGenre] = useState(genres[0]);
 
   const header = (
@@ -117,10 +116,6 @@ export function HomeScreen({ featured, rows, genres, avatar, coins, onPlay, onOp
           <Ionicons name="heart-outline" size={iconSize.md} color={colors.onPrimary} />
         </View>
         <View style={styles.topBarActions}>
-          <View style={styles.coinBadge} accessibilityLabel={strings.home.coinBalance(coins)}>
-            <Ionicons name="flash-outline" size={iconSize.xs} color={colors.primary} />
-            <Text style={styles.coinText}>{coins}</Text>
-          </View>
           <Pressable
             style={styles.iconButton}
             accessibilityRole="button"
@@ -208,23 +203,6 @@ const styles = StyleSheet.create({
   topBarActions: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  coinBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.xs,
-    marginRight: spacing.xs,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: spacing.xs,
-    borderRadius: radius.pill,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.surface,
-  },
-  coinText: {
-    color: colors.text,
-    fontFamily: fonts.bodySemiBold,
-    fontSize: fontSizes.small,
   },
   iconButton: {
     width: minTouchTarget,
