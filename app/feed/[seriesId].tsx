@@ -2,17 +2,21 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useState } from 'react';
 
 import { EpisodeFeedScreen, useWatchProgress, type FeedItem } from '@/features/feed';
+import { isLocked, useWallet } from '@/features/unlock';
 import { getSeries } from '@/shared/data/catalog';
 
-function openUnlock(_episodeId: string) {}
+function openUnlock(episodeId: string) {
+  router.push({ pathname: '/unlock/[episodeId]', params: { episodeId } });
+}
 
 export default function EpisodeFeedRoute() {
   const { seriesId } = useLocalSearchParams<{ seriesId: string }>();
   const series = getSeries(seriesId);
 
+  const unlockedEpisodeIds = useWallet((state) => state.unlockedEpisodeIds);
   const items: FeedItem[] = (series?.episodes ?? []).map((episode) => ({
     episode,
-    locked: !episode.isFree,
+    locked: isLocked(episode, unlockedEpisodeIds),
   }));
 
   const setLastEpisode = useWatchProgress((state) => state.setLastEpisode);
