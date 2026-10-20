@@ -1,20 +1,30 @@
 import { Inter_400Regular, Inter_500Medium, Inter_600SemiBold } from '@expo-google-fonts/inter';
 import { PlayfairDisplay_700Bold } from '@expo-google-fonts/playfair-display';
 import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
+import { type ErrorBoundaryProps, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 
 import { useWatchProgress } from '@/features/feed';
 import { useWallet } from '@/features/unlock';
+import { ErrorScreen } from '@/shared/components/ErrorScreen';
 import { colors } from '@/shared/theme/tokens';
+
+export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
+  return (
+    <>
+      <StatusBar style="light" />
+      <ErrorScreen onRetry={retry} />
+    </>
+  );
+}
 
 function storesHydrated() {
   return useWallet.persist.hasHydrated() && useWatchProgress.persist.hasHydrated();
 }
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({
+  const [fontsLoaded, fontError] = useFonts({
     PlayfairDisplay_700Bold,
     Inter_400Regular,
     Inter_500Medium,
@@ -34,7 +44,7 @@ export default function RootLayout() {
     };
   }, []);
 
-  if (!fontsLoaded || !hydrated) return null;
+  if ((!fontsLoaded && !fontError) || !hydrated) return null;
 
   return (
     <>

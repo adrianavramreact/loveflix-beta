@@ -5,6 +5,11 @@ export const strings = {
     separator: SEPARATOR,
     notInPrototype: 'Not part of this prototype.',
   },
+  error: {
+    title: 'Something went wrong',
+    message: 'This screen could not be shown. Please try again.',
+    retry: 'Try again',
+  },
   tabs: {
     home: 'Home',
     discover: 'Discover',
