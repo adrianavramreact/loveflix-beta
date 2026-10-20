@@ -18,4 +18,5 @@ export {
 } from './domain/rules';
 export type { UnlockOption } from './domain/rules';
 export { ContinueTheRomanceScreen } from './screens/ContinueTheRomanceScreen';
+export { TopupScreen } from './screens/TopupScreen';
 export { useWallet } from './store/wallet';

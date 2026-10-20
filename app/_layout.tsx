@@ -43,6 +43,7 @@ export default function RootLayout() {
         screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}
       >
         <Stack.Screen name="unlock/[episodeId]" options={{ presentation: 'fullScreenModal' }} />
+        <Stack.Screen name="topup" options={{ presentation: 'fullScreenModal' }} />
       </Stack>
     </>
   );

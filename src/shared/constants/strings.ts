@@ -60,4 +60,21 @@ export const strings = {
     unlockNow: 'Unlock Now',
     maybeLater: 'Maybe Later',
   },
+  topup: {
+    title: 'Unlock Episode',
+    seasonTitle: 'Unlock Season',
+    back: 'Back',
+    episodeStatus: (from: number, to: number) =>
+      `${from === to ? `Episode ${from}` : `Episodes ${from} - ${to}`}${SEPARATOR}Locked`,
+    unlockFor: (price: number) => `Unlock for ${price} Coins`,
+    yourBalance: 'Your Balance',
+    rechargeCoins: 'Recharge Coins',
+    bonus: (amount: number) => `+ ${amount} Bonus`,
+    popular: 'Popular',
+    packLabel: (coins: number, price: string) => `${coins} coins for ${price}`,
+    buyCoins: (coins: number) => `Buy ${coins} Coins`,
+    forPrice: (price: string) => `for ${price}`,
+    secure: 'Secure',
+    simulated: 'Purchases are simulated in this prototype. No payment is made.',
+  },
 };

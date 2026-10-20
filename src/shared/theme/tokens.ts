@@ -8,6 +8,7 @@ export const colors = {
 
   primary: '#64EDF7',
   onPrimary: '#04252A',
+  primarySoft: 'rgba(100, 237, 247, 0.12)',
   optionSelected: '#232E44',
   accent: '#CB64F7',
   accentSoft: 'rgba(203, 100, 247, 0.2)',
@@ -15,6 +16,7 @@ export const colors = {
 
   text: '#FFFFFF',
   textMuted: '#C0BEDA',
+  textSubtle: '#9CA3AF',
 
   lockPanel: '#14285E',
 
@@ -23,6 +25,10 @@ export const colors = {
 
 export const gradients = {
   brand: ['#64EDF7', '#CB64F7'],
+} as const;
+
+export const glows = {
+  brand: '0 0 18px rgba(203, 100, 247, 0.45)',
 } as const;
 
 export const spacing = {
@@ -37,6 +43,7 @@ export const spacing = {
 
 export const radius = {
   sm: 10,
+  lg: 16,
   xl: 24,
   pill: 999,
 } as const;
@@ -63,6 +70,7 @@ export const iconSize = {
   xs: 12,
   sm: 18,
   md: 22,
+  lg: 32,
   xl: 40,
 } as const;
 
