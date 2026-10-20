@@ -3,16 +3,16 @@ import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
 type WatchProgressState = {
-  lastEpisodeBySeries: Record<string, number>;
-  setLastEpisode: (seriesId: string, episodeNumber: number) => void;
+  lastIndexBySeries: Record<string, number>;
+  setLastIndex: (seriesId: string, index: number) => void;
 };
 
 export const useWatchProgress = create<WatchProgressState>()(
   persist(
     (set, get) => ({
-      lastEpisodeBySeries: {},
-      setLastEpisode: (seriesId, episodeNumber) =>
-        set({ lastEpisodeBySeries: { ...get().lastEpisodeBySeries, [seriesId]: episodeNumber } }),
+      lastIndexBySeries: {},
+      setLastIndex: (seriesId, index) =>
+        set({ lastIndexBySeries: { ...get().lastIndexBySeries, [seriesId]: index } }),
     }),
     {
       name: 'loveflix-watch-progress',

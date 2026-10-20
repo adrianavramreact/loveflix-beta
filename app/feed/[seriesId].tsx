@@ -19,12 +19,12 @@ export default function EpisodeFeedRoute() {
     locked: isLocked(episode, unlockedEpisodeIds),
   }));
 
-  const setLastEpisode = useWatchProgress((state) => state.setLastEpisode);
+  const setLastIndex = useWatchProgress((state) => state.setLastIndex);
   const [initialIndex] = useState(
-    () => (useWatchProgress.getState().lastEpisodeBySeries[seriesId] ?? 1) - 1,
+    () => useWatchProgress.getState().lastIndexBySeries[seriesId] ?? 0,
   );
 
-  const rememberEpisode = (index: number) => setLastEpisode(seriesId, index + 1);
+  const rememberEpisode = (index: number) => setLastIndex(seriesId, index);
 
   return (
     <EpisodeFeedScreen
