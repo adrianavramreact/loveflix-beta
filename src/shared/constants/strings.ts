@@ -30,4 +30,20 @@ export const strings = {
     stats: (rating: number, episodeCount: number) =>
       `★ ${rating}${SEPARATOR}${episodeCount} Episodes`,
   },
+  feed: {
+    watch: 'Watch',
+    pause: 'Pause',
+    like: 'Like',
+    unlike: 'Unlike',
+    share: 'Share',
+    shareEpisode: 'Share episode',
+    coinMark: '1',
+    videoUnavailable: 'Video unavailable',
+    noEpisodes: 'No episodes yet.',
+    unlockEpisode: (index: number) => `Unlock Episode ${index}`,
+    episodeTag: (index: number) => `Ep ${index}`,
+    duration: (formatted: string) => `${SEPARATOR.trimStart()}${formatted}`,
+    shareMessage: (seriesTitle: string, index: number) =>
+      `Watch ${seriesTitle}, episode ${index}, on LoveFlix`,
+  },
 };

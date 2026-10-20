@@ -17,6 +17,8 @@ export const colors = {
   text: '#FFFFFF',
   textMuted: '#C0BEDA',
 
+  lockPanel: '#14285E',
+
   overlay: 'rgba(0, 0, 0, 0.55)',
 } as const;
 
@@ -48,6 +50,7 @@ export const fonts = {
 } as const;
 
 export const fontSizes = {
+  tiny: 9,
   caption: 12,
   small: 14,
   body: 16,
@@ -61,7 +64,10 @@ export const iconSize = {
   xs: 12,
   sm: 18,
   md: 22,
+  xl: 40,
 } as const;
+
+export const disabledOpacity = 0.5;
 
 // Smallest touch target for anything pressable (Apple HIG: 44×44 pt).
 export const minTouchTarget = 44;

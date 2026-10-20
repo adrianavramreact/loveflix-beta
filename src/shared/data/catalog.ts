@@ -12,6 +12,8 @@ export type Episode = {
   video: number;
   thumbnail: ImageSourcePropType;
   isFree: boolean;
+  likeCount: number;
+  commentCount: number;
 };
 
 export type Series = {
@@ -54,6 +56,10 @@ const CLIPS = [
 
 const CLIP_DURATION_SEC = 10;
 
+// Same social counts as in the design, for every episode.
+const MOCK_LIKE_COUNT = 12_000;
+const MOCK_COMMENT_COUNT = 342;
+
 function buildEpisodes(
   seriesId: string,
   poster: ImageSourcePropType,
@@ -70,6 +76,8 @@ function buildEpisodes(
       video: CLIPS[i % CLIPS.length],
       thumbnail: thumbnails[index] ?? poster,
       isFree: index <= FREE_EPISODES,
+      likeCount: MOCK_LIKE_COUNT,
+      commentCount: MOCK_COMMENT_COUNT,
     };
   });
 }
