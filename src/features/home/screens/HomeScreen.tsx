@@ -22,6 +22,7 @@ import {
   spacing,
 } from '@/shared/theme/tokens';
 import { PosterCard } from '@/features/home/components/PosterCard';
+import { GradientText } from '@/shared/components/GradientText';
 import { strings } from '@/shared/constants/strings';
 
 const HERO_HEIGHT = 460;
@@ -42,11 +43,12 @@ type Props = {
   rows: HomeRow[];
   genres: string[];
   avatar: ImageSourcePropType;
+  coins: number;
   onPlay: (seriesId: string) => void;
   onOpenSeries: (seriesId: string) => void;
 };
 
-export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSeries }: Props) {
+export function HomeScreen({ featured, rows, genres, avatar, coins, onPlay, onOpenSeries }: Props) {
   const [genre, setGenre] = useState(genres[0]);
 
   const header = (
@@ -115,6 +117,10 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
           <Ionicons name="heart-outline" size={iconSize.md} color={colors.onPrimary} />
         </View>
         <View style={styles.topBarActions}>
+          <View style={styles.coinBadge} accessibilityLabel={strings.home.coinBalance(coins)}>
+            <Ionicons name="flash-outline" size={iconSize.xs} color={colors.primary} />
+            <Text style={styles.coinText}>{coins}</Text>
+          </View>
           <Pressable
             style={styles.iconButton}
             accessibilityRole="button"
@@ -153,9 +159,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
                   <View style={[styles.sectionMark, styles.sectionMarkPlain]} />
                 )}
                 {index === 0 ? (
-                  <Text style={[styles.sectionTitle, styles.sectionTitleBlue]}>
-                    {row.sectionTitle}
-                  </Text>
+                  <GradientText style={styles.sectionTitle}>{row.sectionTitle}</GradientText>
                 ) : (
                   <Text style={styles.sectionTitle}>{row.sectionTitle}</Text>
                 )}
@@ -204,6 +208,23 @@ const styles = StyleSheet.create({
   topBarActions: {
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  coinBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+    marginRight: spacing.xs,
+    paddingHorizontal: spacing.sm,
+    paddingVertical: spacing.xs,
+    borderRadius: radius.pill,
+    borderWidth: 1,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+  },
+  coinText: {
+    color: colors.text,
+    fontFamily: fonts.bodySemiBold,
+    fontSize: fontSizes.small,
   },
   iconButton: {
     width: minTouchTarget,
@@ -350,9 +371,6 @@ const styles = StyleSheet.create({
   sectionMark: {
     width: SECTION_MARK_SIZE,
     height: SECTION_MARK_SIZE,
-  },
-  sectionTitleBlue: {
-    color: colors.primary,
   },
   sectionMarkBlue: {
     backgroundColor: colors.primary,

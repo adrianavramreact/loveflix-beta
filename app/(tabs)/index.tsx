@@ -1,6 +1,7 @@
 import { router } from 'expo-router';
 
 import { HomeScreen, type HomeRow } from '@/features/home';
+import { useWallet } from '@/features/unlock';
 import {
   AVATAR,
   FEATURED_SERIES_ID,
@@ -29,6 +30,7 @@ const rows: HomeRow[] = HOME_SECTIONS.flatMap((section) =>
 );
 
 export default function HomeRoute() {
+  const coins = useWallet((state) => state.coins);
   const openFeed = (seriesId: string) =>
     router.push({
       pathname: '/feed/[seriesId]',
@@ -41,6 +43,7 @@ export default function HomeRoute() {
       rows={rows}
       genres={GENRES}
       avatar={AVATAR}
+      coins={coins}
       onPlay={openFeed}
       onOpenSeries={openFeed}
     />

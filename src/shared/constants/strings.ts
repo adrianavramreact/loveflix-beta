@@ -20,6 +20,7 @@ export const strings = {
     search: 'Search',
     notifications: 'Notifications',
     yourProfile: 'Your profile',
+    coinBalance: (coins: number) => `${coins} coins`,
     addToList: 'Add to my list',
     watchSeries: (title: string) => `Watch ${title}`,
     showGenre: (genre: string) => `Show ${genre}`,
