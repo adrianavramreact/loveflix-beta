@@ -17,3 +17,4 @@ export {
   priceOf,
 } from './domain/rules';
 export type { UnlockOption } from './domain/rules';
+export { useWallet } from './store/wallet';

@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
+import { useState } from 'react';
 
-import { EpisodeFeedScreen, getLastEpisode, setLastEpisode, type FeedItem } from '@/features/feed';
+import { EpisodeFeedScreen, useWatchProgress, type FeedItem } from '@/features/feed';
 import { getSeries } from '@/shared/data/catalog';
 
 function openUnlock(_episodeId: string) {}
@@ -14,9 +15,12 @@ export default function EpisodeFeedRoute() {
     locked: !episode.isFree,
   }));
 
-  const rememberEpisode = (index: number) => setLastEpisode(seriesId, index + 1);
+  const setLastEpisode = useWatchProgress((state) => state.setLastEpisode);
+  const [initialIndex] = useState(
+    () => (useWatchProgress.getState().lastEpisodeBySeries[seriesId] ?? 1) - 1,
+  );
 
-  const initialIndex = getLastEpisode(seriesId) - 1;
+  const rememberEpisode = (index: number) => setLastEpisode(seriesId, index + 1);
 
   return (
     <EpisodeFeedScreen
