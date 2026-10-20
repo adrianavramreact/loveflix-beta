@@ -29,7 +29,7 @@ import {
 } from '@/shared/theme/tokens';
 
 const THUMBNAIL_WIDTH = 72;
-const THUMBNAIL_HEIGHT = 96;
+const THUMBNAIL_HEIGHT = 120;
 const BUY_BORDER_WIDTH = 1;
 
 type Props = {
@@ -81,7 +81,9 @@ export function TopupScreen({
         <Image source={thumbnail} style={styles.thumbnail} resizeMode="cover" />
         <View style={styles.episodeInfo}>
           <Text style={styles.seriesTitle}>{seriesTitle}</Text>
-          <Text style={styles.muted}>{strings.topup.episodeStatus(episodeFrom, episodeTo)}</Text>
+          <Text style={styles.episodeStatus}>
+            {strings.topup.episodeStatus(episodeFrom, episodeTo)}
+          </Text>
           <View style={styles.unlockPill}>
             <Ionicons name="lock-closed-outline" size={iconSize.xs} color={colors.primary} />
             <Text style={styles.unlockPillText}>{strings.topup.unlockFor(unlockPrice)}</Text>
@@ -201,7 +203,12 @@ const styles = StyleSheet.create({
   seriesTitle: {
     color: colors.text,
     fontFamily: fonts.display,
-    fontSize: fontSizes.title,
+    fontSize: fontSizes.body,
+  },
+  episodeStatus: {
+    color: colors.textMuted,
+    fontFamily: fonts.body,
+    fontSize: fontSizes.small,
   },
   muted: {
     color: colors.textMuted,
@@ -222,7 +229,7 @@ const styles = StyleSheet.create({
   unlockPillText: {
     color: colors.primary,
     fontFamily: fonts.bodyMedium,
-    fontSize: fontSizes.small,
+    fontSize: fontSizes.caption,
   },
   balanceCard: {
     flexDirection: 'row',
