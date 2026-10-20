@@ -35,7 +35,7 @@ src/
     home/                 screens, components, index.ts
     feed/                 screens, components, index.ts
     unlock/               domain/ (pricing, rules), store/ (wallet), screens, components, __tests__
-  shared/                 theme/tokens.ts, components/, data/catalog.ts, analytics/track.ts
+  shared/                 theme/tokens.ts, components/, data/catalog.ts
 docs/design/              README with the screens we build; renders are local only
 ```
 
@@ -50,7 +50,7 @@ docs/design/              README with the screens we build; renders are local on
 - Colors, spacing, radii and fonts come only from `src/shared/theme/tokens.ts`. Prices come only from `src/features/unlock/domain/pricing.ts`.
 - Every pressable has `accessibilityRole`, `accessibilityLabel` and a touch target of at least 44×44 pt.
 - App text is English.
-- No `console.*`, except `console.info` inside `if (__DEV__)` in `src/shared/analytics/track.ts`.
+- No `console.*`.
 
 ## Git
 
