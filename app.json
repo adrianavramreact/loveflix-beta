@@ -20,7 +20,7 @@
       },
       "predictiveBackGestureEnabled": false
     },
-    "plugins": ["expo-router", "expo-font"],
+    "plugins": ["expo-router", "expo-font", "expo-video"],
     "experiments": {
       "reactCompiler": true
     }

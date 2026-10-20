@@ -1,4 +1,3 @@
-// Separator between pieces of metadata, e.g. "Romance • Drama" or "★ 4.8 • 72 Episodes".
 const SEPARATOR = ' • ';
 
 export const strings = {
@@ -29,5 +28,21 @@ export const strings = {
     minutesPerEpisode: (minutes: number) => `${minutes}m/ep`,
     stats: (rating: number, episodeCount: number) =>
       `★ ${rating}${SEPARATOR}${episodeCount} Episodes`,
+  },
+  feed: {
+    watch: 'Watch',
+    pause: 'Pause',
+    like: 'Like',
+    unlike: 'Unlike',
+    share: 'Share',
+    shareEpisode: 'Share episode',
+    coinMark: '1',
+    videoUnavailable: 'Video unavailable',
+    noEpisodes: 'No episodes yet.',
+    unlockEpisode: (index: number) => `Unlock Episode ${index}`,
+    episodeTag: (index: number) => `Ep ${index}`,
+    duration: (formatted: string) => `${SEPARATOR.trimStart()}${formatted}`,
+    shareMessage: (seriesTitle: string, index: number) =>
+      `Watch ${seriesTitle}, episode ${index}, on LoveFlix`,
   },
 };

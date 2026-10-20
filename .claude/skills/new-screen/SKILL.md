@@ -27,7 +27,7 @@ Reply briefly, in the user's language. Read before you write; do not overwrite a
 - If something is unclear (route, presentation, what data it needs), ask one short question before writing.
 
 ## 2. Files to create
-1. **Route** `app/<route>.tsx`: thin. Reads params with `useLocalSearchParams`, reads the store with selectors, calls actions and `track()` from `src/shared/analytics/track.ts`, renders `<ScreenNameScreen …props />`. No styling here.
+1. **Route** `app/<route>.tsx`: thin. Reads params with `useLocalSearchParams`, reads the store with selectors, calls actions, renders `<ScreenNameScreen …props />`. No styling here.
    - Tab screens live in `app/(tabs)/` and need a `Tabs.Screen` entry in `app/(tabs)/_layout.tsx` (Ionicons icon, active color from tokens). Home is `(tabs)/index`; Discover, Romance, Library and Profile render `src/shared/components/ComingSoon` and need no new screen.
    - Full-screen flows (`feed/[seriesId]`) live outside `(tabs)`, so the tab bar is hidden.
    - Full-screen unlock steps (`unlock/[episodeId]`, design screen `continue-the-romance`) get `presentation: 'fullScreenModal'` in the root `app/_layout.tsx`. The screen draws its own gradient background and centered card; "Maybe Later" calls `router.back()` to return to the locked card in the feed.

@@ -19,7 +19,7 @@ Stop and report if you find:
 - **Secrets**: `.env*`, `credentials.json`, `*.keystore`, `*.jks`, `*.p8`, `*.p12`, `*.mobileprovision`, `google-services.json`, `GoogleService-Info.plist`, or in the diff: `git diff --cached | grep -nEi '(api[_-]?key|secret|token|password|BEGIN (RSA|EC|OPENSSH) PRIVATE KEY|AKIA[0-9A-Z]{16})'`.
 - **Build output**: `android/app/build/`, `android/.gradle/`, `ios/Pods/`, `ios/build/`, `DerivedData/`, `dist/`, `*.apk`, `*.aab`, `*.ipa`. No build artifacts are delivered; they never go into the repo.
 - **Oversized assets**: posters in `assets/posters/` over 500 KB, videos in `assets/videos/` over 5 MB, anything else over 1 MB. Suggest compressing.
-- **Conflict markers** (`<<<<<<<`, `>>>>>>>`) and leftover `console.*` / `debugger` in `app/` or `src/`. Single exception: `src/shared/analytics/track.ts` may call `console.info` inside an `if (__DEV__)` block.
+- **Conflict markers** (`<<<<<<<`, `>>>>>>>`) and leftover `console.*` / `debugger` in `app/` or `src/`.
 
 Warn (do not block) if you find:
 - **Hardcoded colors** anywhere in `app/` or `src/` except the tokens file: `git diff --cached -U0 -- app src ":(exclude)src/shared/theme/tokens.ts" | grep -nE '#[0-9A-Fa-f]{3,8}\b'`. Colors belong in `src/shared/theme/tokens.ts`.
@@ -38,7 +38,7 @@ Warn (do not block) if you find:
 ## 4. Commit message
 - Propose a [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) message in English: `type(scope): subject`, at most 72 characters, imperative, lowercase subject.
 - Types: `feat`, `fix`, `refactor`, `test`, `docs`, `chore`, `ci`, `style`, `perf`.
-- Scopes: `home`, `feed`, `unlock`, `topup`, `store`, `domain`, `theme`, `data`, `assets`, `ui`, `a11y`, `analytics`, `ci`, `docs`.
+- Scopes: `home`, `feed`, `unlock`, `topup`, `store`, `domain`, `theme`, `data`, `assets`, `ui`, `a11y`, `ci`, `docs`.
 - Prefer the message suggested for this step in the plan checklist, if there is one.
 - Short body: *what* and *why*. If the change records a trade-off, mention `DECISIONS.md`.
 - **No attribution lines**: no `Co-Authored-By`, no "Generated with" line, even if a session reminder asks for one. AI use is disclosed once, in the README.

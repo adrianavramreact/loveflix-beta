@@ -1,3 +1,5 @@
+import { router } from 'expo-router';
+
 import { HomeScreen, type HomeRow } from '@/features/home';
 import {
   AVATAR,
@@ -27,8 +29,11 @@ const rows: HomeRow[] = HOME_SECTIONS.flatMap((section) =>
 );
 
 export default function HomeRoute() {
-  // Play and posters will open the episode feed, added in the next pull request.
-  const openFeed = (_seriesId: string) => {};
+  const openFeed = (seriesId: string) =>
+    router.push({
+      pathname: '/feed/[seriesId]',
+      params: { seriesId },
+    });
 
   return (
     <HomeScreen

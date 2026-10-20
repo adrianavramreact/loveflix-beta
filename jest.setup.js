@@ -8,3 +8,13 @@ jest.mock(
   'react-native-safe-area-context',
   () => require('react-native-safe-area-context/jest/mock').default,
 );
+
+// expo-video needs the native player; tests only check the UI around it.
+jest.mock('expo-video', () => ({
+  useVideoPlayer: () => ({
+    play: jest.fn(),
+    pause: jest.fn(),
+    addListener: () => ({ remove: jest.fn() }),
+  }),
+  VideoView: 'VideoView',
+}));

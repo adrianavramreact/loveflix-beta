@@ -25,10 +25,10 @@ import { PosterCard } from '@/features/home/components/PosterCard';
 import { strings } from '@/shared/constants/strings';
 
 const HERO_HEIGHT = 460;
-const HEADER_ITEM_SIZE = 32; // logo and avatar
+const HEADER_ITEM_SIZE = 32;
 const NOTIFICATION_DOT_SIZE = 8;
 const NOTIFICATION_DOT_OFFSET = 10;
-const CHIP_HEIGHT = 36; // hitSlop keeps the touch target at 44 pt
+const CHIP_HEIGHT = 36;
 const SECTION_MARK_SIZE = 26;
 
 export type HomeRow = {
@@ -147,7 +147,6 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
           <View style={styles.row}>
             {row.sectionTitle && (
               <View style={[styles.sectionHeader, index > 0 && styles.sectionSpacing]}>
-                {/* The first section is highlighted with the brand gradient, like in the design. */}
                 {index === 0 ? (
                   <View style={[styles.sectionMark, styles.sectionMarkBlue]} />
                 ) : (
