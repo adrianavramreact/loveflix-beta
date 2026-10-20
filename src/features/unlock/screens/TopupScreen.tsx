@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
-  FlatList,
   Image,
   type ImageSourcePropType,
   Pressable,
+  ScrollView,
   StyleSheet,
   Text,
   View,
@@ -30,7 +30,6 @@ import {
 
 const THUMBNAIL_WIDTH = 72;
 const THUMBNAIL_HEIGHT = 96;
-const PACK_COLUMNS = 2;
 const BUY_BORDER_WIDTH = 1;
 
 type Props = {
@@ -104,23 +103,20 @@ export function TopupScreen({
 
   return (
     <SafeAreaView style={styles.screen}>
-      <FlatList
-        data={packs}
-        keyExtractor={(pack) => pack.id}
-        numColumns={PACK_COLUMNS}
-        ListHeaderComponent={header}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <View style={styles.packCell}>
-            <CoinPackCard
-              pack={item}
-              selected={item.id === selectedPack.id}
-              onSelect={() => onSelectPack(item.id)}
-            />
-          </View>
-        )}
-      />
+      <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
+        {header}
+        <View style={styles.packGrid}>
+          {packs.map((pack) => (
+            <View key={pack.id} style={styles.packCell}>
+              <CoinPackCard
+                pack={pack}
+                selected={pack.id === selectedPack.id}
+                onSelect={() => onSelectPack(pack.id)}
+              />
+            </View>
+          ))}
+        </View>
+      </ScrollView>
 
       <View style={styles.footer}>
         <View style={styles.secureRow}>
@@ -253,6 +249,10 @@ const styles = StyleSheet.create({
     fontFamily: fonts.display,
     fontSize: fontSizes.title,
     marginTop: spacing.sm,
+  },
+  packGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   packCell: {
     width: '50%',
