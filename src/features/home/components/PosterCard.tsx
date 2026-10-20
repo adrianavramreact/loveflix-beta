@@ -14,7 +14,6 @@ import {
 } from '@/shared/theme/tokens';
 import { strings } from '@/shared/constants/strings';
 
-// Poster size from the design: 130×185 pt, a 0.7 aspect ratio.
 const POSTER_WIDTH = 130;
 const POSTER_HEIGHT = 185;
 

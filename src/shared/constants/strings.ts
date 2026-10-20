@@ -1,4 +1,3 @@
-// Separator between pieces of metadata, e.g. "Romance • Drama" or "★ 4.8 • 72 Episodes".
 const SEPARATOR = ' • ';
 
 export const strings = {

@@ -1,7 +1,3 @@
-// Design tokens taken from the TargetVideo design file.
-// Colors and radii are the values used in the SVG; fonts were matched visually,
-// because the export has its text converted to outlines.
-
 export const colors = {
   background: '#000000',
   feedBackground: '#061532',
@@ -69,5 +65,4 @@ export const iconSize = {
 
 export const disabledOpacity = 0.5;
 
-// Smallest touch target for anything pressable (Apple HIG: 44×44 pt).
 export const minTouchTarget = 44;
