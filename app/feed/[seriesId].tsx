@@ -1,12 +1,12 @@
 import { router, useLocalSearchParams } from 'expo-router';
 
-import { EpisodeFeedScreen, setLastEpisode, type FeedItem } from '@/features/feed';
+import { EpisodeFeedScreen, getLastEpisode, setLastEpisode, type FeedItem } from '@/features/feed';
 import { getSeries } from '@/shared/data/catalog';
 
 function openUnlock(_episodeId: string) {}
 
 export default function EpisodeFeedRoute() {
-  const { seriesId, ep } = useLocalSearchParams<{ seriesId: string; ep?: string }>();
+  const { seriesId } = useLocalSearchParams<{ seriesId: string }>();
   const series = getSeries(seriesId);
 
   const items: FeedItem[] = (series?.episodes ?? []).map((episode) => ({
@@ -16,8 +16,7 @@ export default function EpisodeFeedRoute() {
 
   const rememberEpisode = (index: number) => setLastEpisode(seriesId, index + 1);
 
-  const requested = Number(ep ?? 1) - 1;
-  const initialIndex = Math.min(Math.max(requested, 0), Math.max(items.length - 1, 0));
+  const initialIndex = getLastEpisode(seriesId) - 1;
 
   return (
     <EpisodeFeedScreen

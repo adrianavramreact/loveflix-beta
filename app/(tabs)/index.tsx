@@ -1,6 +1,5 @@
 import { router } from 'expo-router';
 
-import { getLastEpisode } from '@/features/feed';
 import { HomeScreen, type HomeRow } from '@/features/home';
 import {
   AVATAR,
@@ -33,7 +32,7 @@ export default function HomeRoute() {
   const openFeed = (seriesId: string) =>
     router.push({
       pathname: '/feed/[seriesId]',
-      params: { seriesId, ep: String(getLastEpisode(seriesId)) },
+      params: { seriesId },
     });
 
   return (
