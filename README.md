@@ -2,8 +2,6 @@
 
 A clickable React Native prototype of the LoveFlix beta app (vertical micro-drama series), built with Expo as a take-home task for TargetVideo (Option A).
 
-**Walkthrough video:** _add the Loom link here_
-
 ## What it shows
 
 One loop, built end to end:
