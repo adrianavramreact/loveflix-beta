@@ -30,7 +30,6 @@ type Props = {
   locked: boolean;
   liked: boolean;
   active: boolean;
-  // True for the card on screen and its two neighbours; only these load their video.
   nearActive: boolean;
   height: number;
   onUnlock: (episodeId: string) => void;
@@ -40,14 +39,12 @@ type Props = {
 
 type VideoStatus = 'loading' | 'readyToPlay' | 'error' | 'idle';
 
-// 10 -> "0:10"
 function formatDuration(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const rest = String(seconds % 60).padStart(2, '0');
   return `${minutes}:${rest}`;
 }
 
-// 12000 -> "12K"
 function formatCount(count: number) {
   return count >= 1000 ? `${Math.round(count / 1000)}K` : String(count);
 }
@@ -75,6 +72,8 @@ export function EpisodeCard({
     // Only the card on screen may move the feed on. On Android, players of hidden or
     // locked cards can report an end too, which would scroll the feed to the last card.
     const endSub = player.addListener('playToEnd', () => {
+      player.pause();
+      player.currentTime = 0;
       if (active && !locked) onEnded(index);
     });
     return () => {
@@ -104,7 +103,9 @@ export function EpisodeCard({
   return (
     <View style={[styles.card, { height }]}>
       <Image source={episode.thumbnail} style={styles.fill} resizeMode="cover" />
-      {!locked && <VideoView player={player} style={styles.fill} contentFit="cover" />}
+      {!locked && (
+        <VideoView player={player} style={styles.fill} contentFit="cover" nativeControls={false} />
+      )}
 
       <LinearGradient
         colors={['transparent', colors.background]}

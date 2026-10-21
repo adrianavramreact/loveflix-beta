@@ -1,10 +1,20 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRef, useState } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { EpisodeCard } from '@/features/feed/components/EpisodeCard';
 import { strings } from '@/shared/constants/strings';
 import type { Episode } from '@/shared/data/catalog';
-import { colors, fonts, fontSizes } from '@/shared/theme/tokens';
+import {
+  colors,
+  fonts,
+  fontSizes,
+  iconSize,
+  minTouchTarget,
+  radius,
+  spacing,
+} from '@/shared/theme/tokens';
 
 export type FeedItem = {
   episode: Episode;
@@ -37,8 +47,8 @@ export function EpisodeFeedScreen({
   onBack,
   onActiveIndexChange,
 }: Props) {
-  // Each card is exactly as tall as the list, so paging snaps card by card.
-  const [height, setHeight] = useState(0);
+  const { height } = Dimensions.get('screen');
+  const insets = useSafeAreaInsets();
   const listRef = useRef<FlatList<FeedItem>>(null);
   const [activeIndex, setActiveIndex] = useState(initialIndex);
 
@@ -62,46 +72,57 @@ export function EpisodeFeedScreen({
     }
   };
 
+  const backButton = (
+    <Pressable
+      style={[styles.backButton, { top: insets.top + spacing.sm }]}
+      onPress={onBack}
+      accessibilityRole="button"
+      accessibilityLabel={strings.feed.back}
+    >
+      <Ionicons name="chevron-back" size={iconSize.md} color={colors.text} />
+    </Pressable>
+  );
+
   if (items.length === 0) {
     return (
       <View style={styles.empty}>
         <Text style={styles.emptyText}>{strings.feed.noEpisodes}</Text>
+        {backButton}
       </View>
     );
   }
 
   return (
-    <View style={styles.screen} onLayout={(e) => setHeight(e.nativeEvent.layout.height)}>
-      {height > 0 && (
-        <FlatList
-          ref={listRef}
-          data={items}
-          keyExtractor={(item) => item.episode.id}
-          pagingEnabled
-          initialNumToRender={INITIAL_CARDS_TO_RENDER}
-          windowSize={WINDOW_SIZE}
-          showsVerticalScrollIndicator={false}
-          initialScrollIndex={initialIndex}
-          getItemLayout={(_, index) => ({ length: height, offset: height * index, index })}
-          onViewableItemsChanged={onViewableItemsChanged}
-          viewabilityConfig={viewabilityConfig}
-          renderItem={({ item, index }) => (
-            <EpisodeCard
-              index={index}
-              episode={item.episode}
-              seriesTitle={seriesTitle}
-              locked={item.locked}
-              liked={item.liked}
-              active={index === activeIndex}
-              nearActive={Math.abs(index - activeIndex) <= 1}
-              height={height}
-              onUnlock={onUnlock}
-              onToggleLike={onToggleLike}
-              onEnded={goToNext}
-            />
-          )}
-        />
-      )}
+    <View style={styles.screen}>
+      <FlatList
+        ref={listRef}
+        data={items}
+        keyExtractor={(item) => item.episode.id}
+        pagingEnabled
+        initialNumToRender={INITIAL_CARDS_TO_RENDER}
+        windowSize={WINDOW_SIZE}
+        showsVerticalScrollIndicator={false}
+        initialScrollIndex={initialIndex}
+        getItemLayout={(_, index) => ({ length: height, offset: height * index, index })}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewabilityConfig}
+        renderItem={({ item, index }) => (
+          <EpisodeCard
+            index={index}
+            episode={item.episode}
+            seriesTitle={seriesTitle}
+            locked={item.locked}
+            liked={item.liked}
+            active={index === activeIndex}
+            nearActive={Math.abs(index - activeIndex) <= 1}
+            height={height}
+            onUnlock={onUnlock}
+            onToggleLike={onToggleLike}
+            onEnded={goToNext}
+          />
+        )}
+      />
+      {backButton}
     </View>
   );
 }
@@ -116,6 +137,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: colors.feedBackground,
+  },
+  backButton: {
+    position: 'absolute',
+    left: spacing.sm,
+    width: minTouchTarget,
+    height: minTouchTarget,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: radius.pill,
+    backgroundColor: colors.overlay,
   },
   emptyText: {
     color: colors.textMuted,
