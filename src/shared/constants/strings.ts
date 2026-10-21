@@ -65,6 +65,7 @@ export const strings = {
     coins: (amount: number) => `${amount} Coins`,
     unlockNow: 'Unlock Now',
     maybeLater: 'Maybe Later',
+    optionHint: 'Then tap Unlock Now below.',
   },
   topup: {
     title: 'Unlock Episode',
@@ -78,6 +79,7 @@ export const strings = {
     bonus: (amount: number) => `+ ${amount} Bonus`,
     popular: 'Popular',
     packLabel: (coins: number, price: string) => `${coins} coins for ${price}`,
+    packHint: 'Then tap Buy below to pay.',
     buyCoins: (coins: number) => `Buy ${coins} Coins`,
     forPrice: (price: string) => `for ${price}`,
     secure: 'Secure',
