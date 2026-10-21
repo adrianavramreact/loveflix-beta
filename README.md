@@ -13,7 +13,7 @@ One loop, built end to end:
 3. **Continue the romance**: unlock the episode or, while more than one episode is locked, the whole season, with coins.
 4. **Coin packs**: not enough coins opens the packs. The purchase is simulated; it adds the coins, unlocks what was chosen and returns to the episode, which now plays.
 
-Coins, unlocked episodes and the last watched episode of each series are saved on the device, so they survive a restart.
+Coins, unlocked episodes, likes and the last watched episode of each series are saved on the device, so they survive a restart.
 
 ## Run it
 

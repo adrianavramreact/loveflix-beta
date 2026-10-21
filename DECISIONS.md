@@ -19,6 +19,7 @@ The choices behind the prototype, and what I traded for them.
 
 - **Only nearby videos load.** The visible card and its neighbours get a video source; the others keep their poster. This keeps memory and video decoders low, and swiping to the next card is still instant.
 - **Only the active card can move the feed on.** On Android, players of hidden cards can report that a video ended; ignoring those stops the feed from jumping ahead.
+- **Our own controls only.** The player's native controls are turned off: they added a second set of buttons over the design (skip, seek, fullscreen), differed between iOS and Android, and sat under the bottom shade. Play and pause go through the Watch button. Native controls would also work, and bring seeking, fullscreen (including watching in landscape) and picture-in-picture for free; which way to go is a call I'd make together with design. Otherwise, a slim progress bar in the app's style would be the next step.
 - **Resume where you left off.** Opening a series starts at the last episode watched, saved per series in its own store, separate from coins.
 
 ## Prices and unlocking
