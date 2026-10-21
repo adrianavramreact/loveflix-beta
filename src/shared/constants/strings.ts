@@ -35,6 +35,7 @@ export const strings = {
       `★ ${rating}${SEPARATOR}${episodeCount} Episodes`,
   },
   feed: {
+    back: 'Back',
     watch: 'Watch',
     pause: 'Pause',
     like: 'Like',

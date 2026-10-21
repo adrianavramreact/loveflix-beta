@@ -28,24 +28,23 @@ type Props = {
   episode: Episode;
   seriesTitle: string;
   locked: boolean;
+  liked: boolean;
   active: boolean;
-  // True for the card on screen and its two neighbours; only these load their video.
   nearActive: boolean;
   height: number;
   onUnlock: (episodeId: string) => void;
+  onToggleLike: (episodeId: string) => void;
   onEnded: (index: number) => void;
 };
 
 type VideoStatus = 'loading' | 'readyToPlay' | 'error' | 'idle';
 
-// 10 -> "0:10"
 function formatDuration(seconds: number) {
   const minutes = Math.floor(seconds / 60);
   const rest = String(seconds % 60).padStart(2, '0');
   return `${minutes}:${rest}`;
 }
 
-// 12000 -> "12K"
 function formatCount(count: number) {
   return count >= 1000 ? `${Math.round(count / 1000)}K` : String(count);
 }
@@ -55,16 +54,17 @@ export function EpisodeCard({
   episode,
   seriesTitle,
   locked,
+  liked,
   active,
   nearActive,
   height,
   onUnlock,
+  onToggleLike,
   onEnded,
 }: Props) {
   const player = useVideoPlayer(locked || !nearActive ? null : episode.video);
   const [status, setStatus] = useState<VideoStatus>('loading');
   const [playing, setPlaying] = useState(false);
-  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const statusSub = player.addListener('statusChange', (event) => setStatus(event.status));
@@ -72,6 +72,8 @@ export function EpisodeCard({
     // Only the card on screen may move the feed on. On Android, players of hidden or
     // locked cards can report an end too, which would scroll the feed to the last card.
     const endSub = player.addListener('playToEnd', () => {
+      player.pause();
+      player.currentTime = 0;
       if (active && !locked) onEnded(index);
     });
     return () => {
@@ -101,7 +103,9 @@ export function EpisodeCard({
   return (
     <View style={[styles.card, { height }]}>
       <Image source={episode.thumbnail} style={styles.fill} resizeMode="cover" />
-      {!locked && <VideoView player={player} style={styles.fill} contentFit="cover" />}
+      {!locked && (
+        <VideoView player={player} style={styles.fill} contentFit="cover" nativeControls={false} />
+      )}
 
       <LinearGradient
         colors={['transparent', colors.background]}
@@ -141,7 +145,7 @@ export function EpisodeCard({
       <View style={styles.actions}>
         <Pressable
           style={styles.action}
-          onPress={() => setLiked(!liked)}
+          onPress={() => onToggleLike(episode.id)}
           accessibilityRole="button"
           accessibilityLabel={liked ? strings.feed.unlike : strings.feed.like}
         >
