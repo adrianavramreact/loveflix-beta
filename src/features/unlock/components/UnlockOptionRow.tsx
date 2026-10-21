@@ -21,6 +21,7 @@ export function UnlockOptionRow({ title, detail, price, selected, bestValue, onS
       accessibilityRole="radio"
       accessibilityState={{ checked: selected }}
       accessibilityLabel={`${title}, ${strings.unlock.coins(price)}`}
+      accessibilityHint={strings.unlock.optionHint}
     >
       {bestValue && (
         <View style={styles.badge}>

@@ -2,8 +2,6 @@
 
 A clickable React Native prototype of the LoveFlix beta app (vertical micro-drama series), built with Expo as a take-home task for TargetVideo (Option A).
 
-**Walkthrough video:** _add the Loom link here_
-
 ## What it shows
 
 One loop, built end to end:
@@ -78,6 +76,7 @@ Left out on purpose: subscriptions (Premium and VIP), ads, login, the series det
 - Analytics for the funnel: `episode_start`, `lock_shown`, `unlock_option_selected`, `topup_opened`, `purchase_completed`, `unlock_completed`. The first metrics to watch: lock-to-unlock conversion, season vs. episode share, and revenue per paying user.
 - MMKV in a development build (still the managed workflow) for faster, synchronous storage; only the two store files would change.
 - End-to-end tests of the loop with Maestro, and tests for the routes.
+- Screen reader focus that lands on the main choice when a screen opens, checked with VoiceOver and TalkBack.
 - Prefetch the next episode's video, and A/B test the prices and the default option.
 
 ## AI use
