@@ -11,6 +11,7 @@ describe('EpisodeFeedScreen', () => {
         items={[]}
         initialIndex={0}
         onUnlock={jest.fn()}
+        onToggleLike={jest.fn()}
         onBack={jest.fn()}
         onActiveIndexChange={jest.fn()}
       />,

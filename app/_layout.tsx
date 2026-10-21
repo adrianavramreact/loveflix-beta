@@ -5,7 +5,7 @@ import { type ErrorBoundaryProps, Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 
-import { useWatchProgress } from '@/features/feed';
+import { useLikes, useWatchProgress } from '@/features/feed';
 import { useWallet } from '@/features/unlock';
 import { ErrorScreen } from '@/shared/components/ErrorScreen';
 import { colors } from '@/shared/theme/tokens';
@@ -20,7 +20,11 @@ export function ErrorBoundary({ retry }: ErrorBoundaryProps) {
 }
 
 function storesHydrated() {
-  return useWallet.persist.hasHydrated() && useWatchProgress.persist.hasHydrated();
+  return (
+    useWallet.persist.hasHydrated() &&
+    useWatchProgress.persist.hasHydrated() &&
+    useLikes.persist.hasHydrated()
+  );
 }
 
 export default function RootLayout() {
@@ -37,10 +41,12 @@ export default function RootLayout() {
     const update = () => setHydrated(storesHydrated());
     const unsubscribeWallet = useWallet.persist.onFinishHydration(update);
     const unsubscribeProgress = useWatchProgress.persist.onFinishHydration(update);
+    const unsubscribeLikes = useLikes.persist.onFinishHydration(update);
     update();
     return () => {
       unsubscribeWallet();
       unsubscribeProgress();
+      unsubscribeLikes();
     };
   }, []);
 

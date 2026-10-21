@@ -9,6 +9,7 @@ import { colors, fonts, fontSizes } from '@/shared/theme/tokens';
 export type FeedItem = {
   episode: Episode;
   locked: boolean;
+  liked: boolean;
 };
 
 type Props = {
@@ -16,6 +17,7 @@ type Props = {
   items: FeedItem[];
   initialIndex: number;
   onUnlock: (episodeId: string) => void;
+  onToggleLike: (episodeId: string) => void;
   onBack: () => void;
   onActiveIndexChange: (index: number) => void;
 };
@@ -31,6 +33,7 @@ export function EpisodeFeedScreen({
   items,
   initialIndex,
   onUnlock,
+  onToggleLike,
   onBack,
   onActiveIndexChange,
 }: Props) {
@@ -88,10 +91,12 @@ export function EpisodeFeedScreen({
               episode={item.episode}
               seriesTitle={seriesTitle}
               locked={item.locked}
+              liked={item.liked}
               active={index === activeIndex}
               nearActive={Math.abs(index - activeIndex) <= 1}
               height={height}
               onUnlock={onUnlock}
+              onToggleLike={onToggleLike}
               onEnded={goToNext}
             />
           )}
