@@ -1,6 +1,7 @@
 # LoveFlix beta prototype
 
 A clickable React Native prototype of the LoveFlix beta app (vertical micro-drama series), built with Expo as a take-home task for one of the companies I've applied for.
+
 Video app presentation: https://www.loom.com/share/b3f89412267d4381a04e0090522b501a
 
 ## What it shows
