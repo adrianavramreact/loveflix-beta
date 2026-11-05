@@ -31,20 +31,22 @@ async function renderScreen(props: { onSelect?: jest.Mock; onUnlock?: jest.Mock 
 describe('ContinueTheRomanceScreen', () => {
   it('shows the title', async () => {
     await renderScreen();
-    expect(screen.getByRole('header', { name: strings.unlock.title })).toBeTruthy();
+    expect(screen.getByRole(strings.roles.header, { name: strings.unlock.title })).toBeTruthy();
   });
 
   it('lets the user pick the single episode', async () => {
     const { onSelect } = await renderScreen();
     await fireEvent.press(
-      screen.getByRole('radio', { name: new RegExp(strings.unlock.episodeOption) }),
+      screen.getByRole(strings.roles.radio, { name: new RegExp(strings.unlock.episodeOption) }),
     );
     expect(onSelect).toHaveBeenCalledWith('episode');
   });
 
   it('unlocks with the selected option', async () => {
     const { onUnlock } = await renderScreen();
-    await fireEvent.press(screen.getByRole('button', { name: strings.unlock.unlockNow }));
+    await fireEvent.press(
+      screen.getByRole(strings.roles.button, { name: strings.unlock.unlockNow }),
+    );
     expect(onUnlock).toHaveBeenCalled();
   });
 });

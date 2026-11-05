@@ -27,10 +27,10 @@ export function CoinPackCard({ pack, selected, onSelect }: Props) {
     <Pressable
       style={[styles.card, selected && styles.cardSelected]}
       onPress={onSelect}
-      accessibilityRole="radio"
+      accessibilityRole={strings.roles.radio}
       accessibilityState={{ checked: selected }}
-      accessibilityLabel={strings.topup.packLabel(pack.coins, pack.price)}
-      accessibilityHint={strings.topup.packHint}
+      accessibilityLabel={strings.topup.a11y.packLabel(pack.coins, pack.price)}
+      accessibilityHint={strings.topup.a11y.packHint}
     >
       {pack.badge === 'popular' && (
         <View style={[styles.banner, styles.bannerPopular]}>

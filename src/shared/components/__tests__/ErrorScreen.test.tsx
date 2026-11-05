@@ -6,13 +6,13 @@ import { strings } from '@/shared/constants/strings';
 describe('ErrorScreen', () => {
   it('explains that something went wrong', async () => {
     await render(<ErrorScreen onRetry={jest.fn()} />);
-    expect(screen.getByRole('header', { name: strings.error.title })).toBeTruthy();
+    expect(screen.getByRole(strings.roles.header, { name: strings.error.title })).toBeTruthy();
   });
 
   it('retries from the button', async () => {
     const onRetry = jest.fn();
     await render(<ErrorScreen onRetry={onRetry} />);
-    fireEvent.press(screen.getByRole('button', { name: strings.error.retry }));
+    fireEvent.press(screen.getByRole(strings.roles.button, { name: strings.error.retry }));
     expect(onRetry).toHaveBeenCalled();
   });
 });

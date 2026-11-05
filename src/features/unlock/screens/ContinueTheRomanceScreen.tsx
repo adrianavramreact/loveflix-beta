@@ -71,7 +71,7 @@ export function ContinueTheRomanceScreen({
             </View>
 
             <Text style={styles.episodeLabel}>{strings.unlock.episodeLabel(episodeIndex)}</Text>
-            <Text style={styles.title} accessibilityRole="header">
+            <Text style={styles.title} accessibilityRole={strings.roles.header}>
               {strings.unlock.title}
             </Text>
             <Text style={styles.subtitle}>{strings.unlock.subtitle}</Text>
@@ -99,7 +99,7 @@ export function ContinueTheRomanceScreen({
             <Pressable
               style={styles.unlockButton}
               onPress={onUnlock}
-              accessibilityRole="button"
+              accessibilityRole={strings.roles.button}
               accessibilityLabel={strings.unlock.unlockNow}
             >
               <Ionicons name="lock-closed-outline" size={iconSize.sm} color={colors.onPrimary} />
@@ -109,7 +109,7 @@ export function ContinueTheRomanceScreen({
             <Pressable
               style={styles.laterButton}
               onPress={onMaybeLater}
-              accessibilityRole="button"
+              accessibilityRole={strings.roles.button}
               accessibilityLabel={strings.unlock.maybeLater}
             >
               <Text style={styles.laterText}>{strings.unlock.maybeLater}</Text>

@@ -60,7 +60,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
             <Text style={styles.spotlight}>{strings.home.spotlight}</Text>
             <Text style={styles.genres}>{featured.genres.join(strings.common.separator)}</Text>
           </View>
-          <Text style={styles.heroTitle} accessibilityRole="header">
+          <Text style={styles.heroTitle} accessibilityRole={strings.roles.header}>
             {featured.title}
           </Text>
           <Text style={styles.tagline}>{featured.tagline}</Text>
@@ -71,16 +71,16 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
             <Pressable
               style={styles.playButton}
               onPress={() => onPlay(featured.id)}
-              accessibilityRole="button"
-              accessibilityLabel={strings.home.watchSeries(featured.title)}
+              accessibilityRole={strings.roles.button}
+              accessibilityLabel={strings.home.a11y.watchSeries(featured.title)}
             >
               <Ionicons name="play" size={iconSize.sm} color={colors.onPrimary} />
               <Text style={styles.playText}>{strings.home.watchNow}</Text>
             </Pressable>
             <Pressable
               style={styles.roundButton}
-              accessibilityRole="button"
-              accessibilityLabel={strings.home.addToList}
+              accessibilityRole={strings.roles.button}
+              accessibilityLabel={strings.home.a11y.addToList}
             >
               <Ionicons name="add" size={iconSize.md} color={colors.text} />
             </Pressable>
@@ -99,8 +99,8 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
             onPress={() => setGenre(item)}
             hitSlop={spacing.xs}
             style={[styles.chip, item === genre && styles.chipActive]}
-            accessibilityRole="button"
-            accessibilityLabel={strings.home.showGenre(item)}
+            accessibilityRole={strings.roles.button}
+            accessibilityLabel={strings.home.a11y.showGenre(item)}
           >
             <Text style={[styles.chipText, item === genre && styles.chipTextActive]}>{item}</Text>
           </Pressable>
@@ -118,15 +118,15 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
         <View style={styles.topBarActions}>
           <Pressable
             style={styles.iconButton}
-            accessibilityRole="button"
-            accessibilityLabel={strings.home.search}
+            accessibilityRole={strings.roles.button}
+            accessibilityLabel={strings.home.a11y.search}
           >
             <Ionicons name="search" size={iconSize.md} color={colors.text} />
           </Pressable>
           <Pressable
             style={styles.iconButton}
-            accessibilityRole="button"
-            accessibilityLabel={strings.home.notifications}
+            accessibilityRole={strings.roles.button}
+            accessibilityLabel={strings.home.a11y.notifications}
           >
             <Ionicons name="notifications-outline" size={iconSize.md} color={colors.text} />
             <View style={styles.notificationDot} />
@@ -134,7 +134,7 @@ export function HomeScreen({ featured, rows, genres, avatar, onPlay, onOpenSerie
           <Image
             source={avatar}
             style={styles.avatar}
-            accessibilityLabel={strings.home.yourProfile}
+            accessibilityLabel={strings.home.a11y.yourProfile}
           />
         </View>
       </View>

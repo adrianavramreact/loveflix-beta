@@ -18,10 +18,10 @@ export function UnlockOptionRow({ title, detail, price, selected, bestValue, onS
     <Pressable
       style={[styles.row, selected && styles.rowSelected]}
       onPress={onSelect}
-      accessibilityRole="radio"
+      accessibilityRole={strings.roles.radio}
       accessibilityState={{ checked: selected }}
-      accessibilityLabel={`${title}, ${strings.unlock.coins(price)}`}
-      accessibilityHint={strings.unlock.optionHint}
+      accessibilityLabel={strings.unlock.a11y.optionLabel(title, price)}
+      accessibilityHint={strings.unlock.a11y.optionHint}
     >
       {bestValue && (
         <View style={styles.badge}>

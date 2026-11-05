@@ -126,7 +126,7 @@ export function EpisodeCard({
         <Pressable
           style={styles.lockBox}
           onPress={() => onUnlock(episode.id)}
-          accessibilityRole="button"
+          accessibilityRole={strings.roles.button}
           accessibilityLabel={strings.feed.unlockEpisode(episode.index)}
         >
           <View style={styles.lockIcon}>
@@ -146,8 +146,8 @@ export function EpisodeCard({
         <Pressable
           style={styles.action}
           onPress={() => onToggleLike(episode.id)}
-          accessibilityRole="button"
-          accessibilityLabel={liked ? strings.feed.unlike : strings.feed.like}
+          accessibilityRole={strings.roles.button}
+          accessibilityLabel={liked ? strings.feed.a11y.unlike : strings.feed.a11y.like}
         >
           <View style={styles.actionIcon}>
             <Ionicons
@@ -167,8 +167,8 @@ export function EpisodeCard({
         <Pressable
           style={styles.action}
           onPress={share}
-          accessibilityRole="button"
-          accessibilityLabel={strings.feed.shareEpisode}
+          accessibilityRole={strings.roles.button}
+          accessibilityLabel={strings.feed.a11y.shareEpisode}
         >
           <View style={styles.actionIcon}>
             <Ionicons name="share-social-outline" size={iconSize.md} color={colors.text} />
@@ -178,7 +178,7 @@ export function EpisodeCard({
       </View>
 
       <View style={styles.info}>
-        <Text style={styles.title} accessibilityRole="header">
+        <Text style={styles.title} accessibilityRole={strings.roles.header}>
           {seriesTitle}
         </Text>
         <View style={styles.metaRow}>
@@ -190,7 +190,7 @@ export function EpisodeCard({
         <Pressable
           style={[styles.watchButton, locked && styles.watchButtonLocked]}
           onPress={locked ? () => onUnlock(episode.id) : togglePlay}
-          accessibilityRole="button"
+          accessibilityRole={strings.roles.button}
           accessibilityLabel={
             locked
               ? strings.feed.unlockEpisode(episode.index)

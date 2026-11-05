@@ -10,14 +10,14 @@ type Props = {
 export function ErrorScreen({ onRetry }: Props) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title} accessibilityRole="header">
+      <Text style={styles.title} accessibilityRole={strings.roles.header}>
         {strings.error.title}
       </Text>
       <Text style={styles.text}>{strings.error.message}</Text>
       <Pressable
         style={styles.button}
         onPress={onRetry}
-        accessibilityRole="button"
+        accessibilityRole={strings.roles.button}
         accessibilityLabel={strings.error.retry}
       >
         <Text style={styles.buttonText}>{strings.error.retry}</Text>
