@@ -1,6 +1,11 @@
 const SEPARATOR = ' • ';
 
 export const strings = {
+  roles: {
+    button: 'button',
+    header: 'header',
+    radio: 'radio',
+  } as const,
   common: {
     separator: SEPARATOR,
     notInPrototype: 'Not part of this prototype.',
@@ -22,26 +27,24 @@ export const strings = {
     watchNow: 'Watch Now',
     seeAll: 'See all',
     pro: 'PRO',
-    search: 'Search',
-    notifications: 'Notifications',
-    yourProfile: 'Your profile',
-    addToList: 'Add to my list',
-    watchSeries: (title: string) => `Watch ${title}`,
-    showGenre: (genre: string) => `Show ${genre}`,
-    openSeries: (title: string) => `Open ${title}`,
     episodeCount: (count: number) => `${count} Eps`,
     minutesPerEpisode: (minutes: number) => `${minutes}m/ep`,
     stats: (rating: number, episodeCount: number) =>
       `★ ${rating}${SEPARATOR}${episodeCount} Episodes`,
+    a11y: {
+      search: 'Search',
+      notifications: 'Notifications',
+      yourProfile: 'Your profile',
+      addToList: 'Add to my list',
+      watchSeries: (title: string) => `Watch ${title}`,
+      showGenre: (genre: string) => `Show ${genre}`,
+      openSeries: (title: string) => `Open ${title}`,
+    },
   },
   feed: {
-    back: 'Back',
     watch: 'Watch',
     pause: 'Pause',
-    like: 'Like',
-    unlike: 'Unlike',
     share: 'Share',
-    shareEpisode: 'Share episode',
     coinMark: '1',
     videoUnavailable: 'Video unavailable',
     noEpisodes: 'No episodes yet.',
@@ -50,6 +53,12 @@ export const strings = {
     duration: (formatted: string) => `${SEPARATOR.trimStart()}${formatted}`,
     shareMessage: (seriesTitle: string, index: number) =>
       `Watch ${seriesTitle}, episode ${index}, on LoveFlix`,
+    a11y: {
+      back: 'Back',
+      like: 'Like',
+      unlike: 'Unlike',
+      shareEpisode: 'Share episode',
+    },
   },
   unlock: {
     locked: 'Locked',
@@ -65,12 +74,14 @@ export const strings = {
     coins: (amount: number) => `${amount} Coins`,
     unlockNow: 'Unlock Now',
     maybeLater: 'Maybe Later',
-    optionHint: 'Then tap Unlock Now below.',
+    a11y: {
+      optionLabel: (title: string, price: number) => `${title}, ${price} Coins`,
+      optionHint: 'Then tap Unlock Now below.',
+    },
   },
   topup: {
     title: 'Unlock Episode',
     seasonTitle: 'Unlock Season',
-    back: 'Back',
     episodeStatus: (from: number, to: number) =>
       `${from === to ? `Episode ${from}` : `Episodes ${from} - ${to}`}${SEPARATOR}Locked`,
     unlockFor: (price: number) => `Unlock for ${price} Coins`,
@@ -78,11 +89,14 @@ export const strings = {
     rechargeCoins: 'Recharge Coins',
     bonus: (amount: number) => `+ ${amount} Bonus`,
     popular: 'Popular',
-    packLabel: (coins: number, price: string) => `${coins} coins for ${price}`,
-    packHint: 'Then tap Buy below to pay.',
     buyCoins: (coins: number) => `Buy ${coins} Coins`,
     forPrice: (price: string) => `for ${price}`,
     secure: 'Secure',
     simulated: 'Purchases are simulated in this prototype. No payment is made.',
+    a11y: {
+      back: 'Back',
+      packLabel: (coins: number, price: string) => `${coins} coins for ${price}`,
+      packHint: 'Then tap Buy below to pay.',
+    },
   },
 };

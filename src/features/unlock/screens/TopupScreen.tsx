@@ -67,12 +67,12 @@ export function TopupScreen({
         <Pressable
           style={styles.backButton}
           onPress={onBack}
-          accessibilityRole="button"
-          accessibilityLabel={strings.topup.back}
+          accessibilityRole={strings.roles.button}
+          accessibilityLabel={strings.topup.a11y.back}
         >
           <Ionicons name="chevron-back" size={iconSize.md} color={colors.text} />
         </Pressable>
-        <Text style={styles.title} accessibilityRole="header">
+        <Text style={styles.title} accessibilityRole={strings.roles.header}>
           {option === 'season' ? strings.topup.seasonTitle : strings.topup.title}
         </Text>
       </View>
@@ -128,7 +128,7 @@ export function TopupScreen({
         <Pressable
           style={styles.buyPressable}
           onPress={onBuy}
-          accessibilityRole="button"
+          accessibilityRole={strings.roles.button}
           accessibilityLabel={strings.topup.buyCoins(selectedPack.coins)}
         >
           <LinearGradient

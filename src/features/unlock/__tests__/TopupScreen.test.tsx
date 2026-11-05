@@ -33,14 +33,14 @@ async function renderScreen() {
 describe('TopupScreen', () => {
   it('shows the title', async () => {
     await renderScreen();
-    expect(screen.getByRole('header', { name: strings.topup.title })).toBeTruthy();
+    expect(screen.getByRole(strings.roles.header, { name: strings.topup.title })).toBeTruthy();
   });
 
   it('lets the user pick a coin pack', async () => {
     const { onSelectPack } = await renderScreen();
     await fireEvent.press(
-      screen.getByRole('radio', {
-        name: strings.topup.packLabel(secondPack.coins, secondPack.price),
+      screen.getByRole(strings.roles.radio, {
+        name: strings.topup.a11y.packLabel(secondPack.coins, secondPack.price),
       }),
     );
     expect(onSelectPack).toHaveBeenCalledWith(secondPack.id);
@@ -49,7 +49,7 @@ describe('TopupScreen', () => {
   it('buys the selected pack', async () => {
     const { onBuy } = await renderScreen();
     await fireEvent.press(
-      screen.getByRole('button', { name: strings.topup.buyCoins(firstPack.coins) }),
+      screen.getByRole(strings.roles.button, { name: strings.topup.buyCoins(firstPack.coins) }),
     );
     expect(onBuy).toHaveBeenCalled();
   });

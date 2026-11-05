@@ -29,7 +29,7 @@ async function renderCard({ onUnlock = jest.fn(), onToggleLike = jest.fn(), like
 describe('EpisodeCard', () => {
   it('shows the series title', async () => {
     await renderCard();
-    expect(screen.getByRole('header', { name: series.title })).toBeTruthy();
+    expect(screen.getByRole(strings.roles.header, { name: series.title })).toBeTruthy();
   });
 
   it('asks to unlock a locked episode', async () => {
@@ -42,12 +42,12 @@ describe('EpisodeCard', () => {
 
   it('likes the episode', async () => {
     const { onToggleLike } = await renderCard();
-    await fireEvent.press(screen.getByRole('button', { name: strings.feed.like }));
+    await fireEvent.press(screen.getByRole(strings.roles.button, { name: strings.feed.a11y.like }));
     expect(onToggleLike).toHaveBeenCalledWith(lockedEpisode.id);
   });
 
   it('shows a liked episode as liked', async () => {
     await renderCard({ liked: true });
-    expect(screen.getByRole('button', { name: strings.feed.unlike })).toBeTruthy();
+    expect(screen.getByRole(strings.roles.button, { name: strings.feed.a11y.unlike })).toBeTruthy();
   });
 });

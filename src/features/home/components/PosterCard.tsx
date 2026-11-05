@@ -26,8 +26,8 @@ export function PosterCard({ series, onPress }: Props) {
   return (
     <Pressable
       onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={strings.home.openSeries(series.title)}
+      accessibilityRole={strings.roles.button}
+      accessibilityLabel={strings.home.a11y.openSeries(series.title)}
       style={styles.card}
     >
       <View>

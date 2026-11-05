@@ -76,8 +76,8 @@ export function EpisodeFeedScreen({
     <Pressable
       style={[styles.backButton, { top: insets.top + spacing.sm }]}
       onPress={onBack}
-      accessibilityRole="button"
-      accessibilityLabel={strings.feed.back}
+      accessibilityRole={strings.roles.button}
+      accessibilityLabel={strings.feed.a11y.back}
     >
       <Ionicons name="chevron-back" size={iconSize.md} color={colors.text} />
     </Pressable>
